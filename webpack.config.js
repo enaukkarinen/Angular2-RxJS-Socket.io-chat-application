@@ -16,7 +16,6 @@ module.exports = {
   // static data for index.html
   metadata: metadata,
   // for faster builds use 'eval'
-  devtool: 'source-map',
   debug: true,
 
   // our angular app
@@ -30,25 +29,23 @@ module.exports = {
     chunkFilename: '[id].chunk.js'
   },
 
-
+// Currently we need to add '.ts' to resolve.extensions array.
+ 
   resolve: {
-        // ensure loader extensions match
-    extensions: ['','.ts','.js','.json','.css','.html']
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
-  
   module: {
     loaders: [
-      { 
-          loader: 'ts-loader',
-           query: {
+      // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+      { test: /\.tsx?$/, loader: 'ts-loader',  query: {
                     'ignoreDiagnostics': [
                         2403, // 2403 -> Subsequent variable declarations
                         2300, // 2300 -> Duplicate identifier
                         2374, // 2374 -> Duplicate number index signature
                         2375  // 2375 -> Duplicate string index signature
                     ]
-            }
-       }
+            } }
     ]
   }
   
