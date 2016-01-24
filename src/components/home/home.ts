@@ -1,6 +1,6 @@
 
 
-export default class home {
+export class home {
     name: string;
 
     constructor() {

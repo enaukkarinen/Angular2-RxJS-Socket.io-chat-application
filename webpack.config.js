@@ -1,26 +1,13 @@
 
-var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
-var metadata = {
-  title: 'Angular2 Webpack Starter by @gdi2990 from @AngularClass',
-  baseUrl: '/',
-  host: 'localhost',
-  port: 3000,
-  ENV: ENV
-};
-
-
 /*
  * Config
  */
 module.exports = {
-  // static data for index.html
-  metadata: metadata,
   // for faster builds use 'eval'
   debug: true,
-
   // our angular app
   entry: { 'vendor': './src/vendor.ts', 'main': './src/main.ts' },
-
+  devtool: 'source-map',
   // Config for our build files
   output: {
     path: root('dist'),
