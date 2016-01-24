@@ -44,16 +44,26 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"es6-shim\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	/* WEBPACK VAR INJECTION */(function(process) {__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"es6-shim\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"es6-promise\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"zone.js/lib/browser/zone-microtask\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	if ('production' !== process.env.ENV) {
+	    __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"es7-reflect-metadata/dist/browser\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	    Error['stackTraceLimit'] = Infinity;
+	    Zone['longStackTraceZone'] = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"zone.js/lib/zones/long-stack-trace.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	}
+	if ('production' === process.env.ENV) {
+	    var ngCore = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"angular2/core\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	    ngCore.enableProdMode();
+	}
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"angular2/platform/browser\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"angular2/platform/common_dom\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"angular2/router\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"angular2/http\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"angular2/core\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"rxjs\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
+	
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"C:\\ext_projects\\ng2-webpack\\node_modules\\webpack\\node_modules\\node-libs-browser\\node_modules\\process\\browser.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))))
 
 /***/ }
 /******/ ]);
