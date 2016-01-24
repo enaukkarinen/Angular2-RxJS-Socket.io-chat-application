@@ -1,10 +1,16 @@
 
+var CopyWebpackPlugin  = require('copy-webpack-plugin');
+var HtmlWebpackPlugin  = require('html-webpack-plugin');
+
 /*
  * Config
  */
 module.exports = {
   // for faster builds use 'eval'
   debug: true,
+  
+  watch: true,
+  
   // our angular app
   entry: { 'vendor': './src/vendor.ts', 'main': './src/main.ts' },
   devtool: 'source-map',
@@ -34,7 +40,12 @@ module.exports = {
                     ]
             } }
     ]
-  }
+  },
+  plugins: [
+
+    new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]), 
+    new HtmlWebpackPlugin({ template: 'src/index.html', inject: true }), // generates html
+  ],
   
 };
 
