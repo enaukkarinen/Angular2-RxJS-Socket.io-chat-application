@@ -9,8 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "copy-webpack-plugin": "^0.3.3",
-    "html-webpack-plugin": "^2.7.1",
     "path": "^0.12.7",
     "ts-loader": "^0.8.0",
     "typescript": "^1.7.5",
@@ -18,11 +16,12 @@
     "webpack": "^1.12.12"
   },
   "dependencies": {
-    "angular2": "2.0.0-beta.1",
+    "angular2": "^2.0.0-beta.1",
     "es6-promise": "^3.0.2",
-    "es6-shim": "^0.33.3",
+    "es6-shim": "^0.33.13",
+    "reflect-metadata": "0.1.2",
     "es7-reflect-metadata": "^1.4.0",
     "rxjs": "5.0.0-beta.0",
-    "zone.js": "0.5.10"
+    "zone.js": "^0.5.10"
   }
 }
