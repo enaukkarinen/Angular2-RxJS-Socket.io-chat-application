@@ -9,9 +9,12 @@ module.exports = {
     // for faster builds use 'eval'
     debug: true,
     watch: true,
+    
+    // webpack-dev-server config
+    // in the webpack-dev-server all files are ran from memory and not copied anywhere (no dist/ folder created)
     devServer: {
         port: 8001,
-        contentBase: "./dist",
+        contentBase: "./dist"
     },
   
     
@@ -19,10 +22,10 @@ module.exports = {
     
     // Config for our build files
     output: {
-    path: root('dist'),
-    filename: '[name].bundle.js',
-    sourceMapFilename: '[name].map',
-    chunkFilename: '[id].chunk.js'
+        path: root('dist'), // our build folder name
+        filename: '[name].bundle.js', // [name] is used so the bundle file name matches the entry point defined above
+        sourceMapFilename: '[name].map',
+        chunkFilename: '[id].chunk.js'
     },
     
     devtool: 'source-map',
