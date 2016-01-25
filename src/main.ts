@@ -4,7 +4,7 @@ import {home} from './components/home/home'
 
 var x = new home();
 
-document.getElementById("title").innerHTML = "Changed innerHTML";
+document.getElementById("title").innerHTML = "my shitty app!";
 
 
 console.log('app loaded');
