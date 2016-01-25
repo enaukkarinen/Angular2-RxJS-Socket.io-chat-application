@@ -2,10 +2,10 @@
 REPOSITORY UNDER CONSTRUCTION
 
 List of webpack loaders used:
-- ts-loader
-- tslint-loader
+- <a href="https://github.com/TypeStrong/ts-loader">ts-loader</a>
+- <a href="https://github.com/wbuchwalter/tslint-loader">tslint-loader</a>
 
-To see the full list of available loaders go to <a href="https://webpack.github.io/docs/list-of-loaders.html">webpack loaders</a>
+To see the full list of available loaders go to <a href="https://webpack.github.io/docs/list-of-loaders.html">webpack loaders</a>.
 
 References:
 - https://github.com/AngularClass/angular2-webpack-starter
