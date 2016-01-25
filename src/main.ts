@@ -1,14 +1,11 @@
+import {Home} from "./components/home/home";
 
-import {home} from './components/home/home'
-
-
-var x = new home();
+var x = new Home();
 
 document.getElementById("title").innerHTML = "my shitty app!";
 
 
-console.log('app loaded');
-
+console.log("app loaded");
 
 export default function ensio() {
     return "ensio!";

@@ -1,6 +1,5 @@
 
-
-export class home {
+export class Home {
     name: string;
 
     constructor() {

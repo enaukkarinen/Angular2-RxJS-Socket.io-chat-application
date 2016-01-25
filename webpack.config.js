@@ -14,9 +14,9 @@ module.exports = {
         contentBase: "./dist",
     },
   
-    // our angular app
-    entry: { 'vendor': './src/vendor.ts', 'main': './src/main.ts' },
-    devtool: 'source-map',
+    
+    entry: { 'vendor': './src/vendor.ts', 'main': './src/main.ts' }, // angular2.0 app
+    
     // Config for our build files
     output: {
     path: root('dist'),
@@ -24,30 +24,38 @@ module.exports = {
     sourceMapFilename: '[name].map',
     chunkFilename: '[id].chunk.js'
     },
+    
+    devtool: 'source-map',
 
 
     resolve: { extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'] },// Add `.ts` and `.tsx` as a resolvable extension. 
     module: {
-    loaders: [
-        // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-        { 
-            test: /\.tsx?$/, 
-            loader: 'ts-loader',  
-            query: {
-            'ignoreDiagnostics': [
-                2403, // 2403 -> Subsequent variable declarations
-                2300, // 2300 -> Duplicate identifier
-                2374, // 2374 -> Duplicate number index signature
-                2375  // 2375 -> Duplicate string index signature
-            ]
-            } 
-        }
-    ]
+        preLoaders: [
+            {
+                test: /\.ts$/,
+                loader: 'tslint-loader',
+                exclude: [/node_modules/]
+            }
+        ],
+        loaders: [
+            // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+            { 
+                test: /\.tsx?$/, // regex which selects which type of files should be ran through this loader ( .ts or .tsx )
+                loader: 'ts-loader', // loader name
+                query: {
+                'ignoreDiagnostics': [
+                    2403, // 2403 -> Subsequent variable declarations
+                    2300, // 2300 -> Duplicate identifier
+                    2374, // 2374 -> Duplicate number index signature
+                    2375  // 2375 -> Duplicate string index signature
+                ]
+                } 
+            }
+        ]
     },
     plugins: [
-
-    new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]), 
-    new HtmlWebpackPlugin({ template: 'src/index.html', inject: true }), // generates html
+        new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]), 
+        new HtmlWebpackPlugin({ template: 'src/index.html', inject: true }), // generates html
     ]
   
 };
