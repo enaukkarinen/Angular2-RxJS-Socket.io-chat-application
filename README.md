@@ -1,4 +1,4 @@
-# noobs-guide-to-angular2-and-webpack
+# Noob's guide to Angular 2.0 & Webpack
 REPOSITORY UNDER CONSTRUCTION
 
 List of webpack loaders used:
