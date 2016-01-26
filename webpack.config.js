@@ -3,9 +3,7 @@ var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 var ExtractTextPlugin  = require('extract-text-webpack-plugin');
 var Clean              = require('clean-webpack-plugin');
-/*
- * Config
- */
+
 module.exports = {
     // for faster builds use 'eval'
     debug: true,
@@ -19,7 +17,10 @@ module.exports = {
     },
   
     
-    entry: { 'lib': './src/lib.ts', 'main': './src/main.ts', 'lib.styles':  'bootstrap-sass!./src/styles/bootstrap.config.js' }, // angular2.0 app
+    entry: { 
+        'lib': './src/lib.ts', 
+        'main': './src/main.ts', 
+        'bootstrap':  'bootstrap-sass!./src/styles/bootstrap.config.js' },
     
     // Config for our build files
     output: {
@@ -53,13 +54,18 @@ module.exports = {
                     ]
                 } 
             },
-            { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!' + 'sass?precision=10&outputStyle=expanded&sourceMap=true') },
+            { 
+                test: /\.scss$/,
+                // loaders can be assigned parameters with '?param=value
+                loader: ExtractTextPlugin.extract('style', 'css!' + 'sass?precision=10&outputStyle=expanded&sourceMap=true') 
+            }, 
             { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
             { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
-            { test: /\.(jpe?g|png|gif)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
+            // parameters: any image smaller than 100000kb is going to be inlined and turned into base64 data, and any other image will be a separate request
+            { test: /\.(jpe?g|png|gif)$/, exclude: 'node_modules', loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
         ]
     },
     plugins: [
