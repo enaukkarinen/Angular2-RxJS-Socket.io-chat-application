@@ -1,7 +1,8 @@
-
+var webpack            = require('webpack');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
-
+var ExtractTextPlugin  = require('extract-text-webpack-plugin');
+var Clean              = require('clean-webpack-plugin');
 /*
  * Config
  */
@@ -18,7 +19,7 @@ module.exports = {
     },
   
     
-    entry: { 'lib': './src/lib.ts', 'main': './src/main.ts' }, // angular2.0 app
+    entry: { 'lib': './src/lib.ts', 'main': './src/main.ts', 'lib.styles':  'bootstrap-sass!./src/styles/bootstrap.config.js' }, // angular2.0 app
     
     // Config for our build files
     output: {
@@ -40,7 +41,6 @@ module.exports = {
             }
         ],
         loaders: [
-            // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
             { 
                 test: /\.tsx?$/, // regex which selects which type of files should be ran through this loader ( .ts or .tsx )
                 loader: 'ts-loader', // loader name
@@ -52,12 +52,22 @@ module.exports = {
                         2375  // 2375 -> Duplicate string index signature
                     ]
                 } 
-            }
+            },
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!' + 'sass?precision=10&outputStyle=expanded&sourceMap=true') },
+            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+            { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
+            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
+            { test: /\.(jpe?g|png|gif)$/, loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
         ]
     },
     plugins: [
         new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]), 
         new HtmlWebpackPlugin({ template: 'src/index.html', inject: true }), // generates html
+        new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery'}), // You can use $ or jquery in all components
+        new ExtractTextPlugin('styles.css'),
+        new Clean(['dist'], root())
     ]
   
 };
