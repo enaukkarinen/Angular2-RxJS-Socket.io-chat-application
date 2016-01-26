@@ -17,9 +17,12 @@
     "copy-webpack-plugin": "^0.3.3",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.7.2",
     "jquery": "^2.2.0",
+    "node-sass": "^3.4.2",
     "path": "^0.12.7",
+    "raw-loader": "^0.5.1",
     "rimraf": "^2.5.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
@@ -28,6 +31,7 @@
     "tslint-loader": "^2.1.0",
     "typescript": "^1.7.5",
     "typings": "^0.6.2",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1"
   },
@@ -35,9 +39,14 @@
     "angular2": "^2.0.0-beta.1",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
-    "reflect-metadata": "0.1.2",
     "es7-reflect-metadata": "^1.4.0",
+    "lodash": "^4.0.1",
+    "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.0",
     "zone.js": "^0.5.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enaukkarinen/noobs-guide-to-angular2-and-webpack.git"
   }
 }
