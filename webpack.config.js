@@ -14,7 +14,7 @@ module.exports = {
     // webpack-dev-server config
     // in the webpack-dev-server all files are ran from memory and not copied anywhere (no dist/ folder created)
     devServer: {
-        port: 8001,
+        port: 3000,
         contentBase: "./dist"
     },
   
