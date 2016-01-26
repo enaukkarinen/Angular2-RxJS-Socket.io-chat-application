@@ -54,21 +54,24 @@ module.exports = {
                     ]
                 } 
             },
+                   { test: /\.html$/, loader: 'raw' },
             { 
                 test: /\.scss$/,
                 // loaders can be assigned parameters with '?param=value
                 loader: ExtractTextPlugin.extract('style', 'css!' + 'sass?precision=10&outputStyle=expanded&sourceMap=true') 
             }, 
+            // parameters: any image smaller than 100000kb is going to be inlined and turned into base64 data. Any other image will be a separate request
+            { test: /\.(jpe?g|png|gif)$/, exclude: 'node_modules', loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' },
             { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
             { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
-            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
-            // parameters: any image smaller than 100000kb is going to be inlined and turned into base64 data, and any other image will be a separate request
-            { test: /\.(jpe?g|png|gif)$/, exclude: 'node_modules', loader: 'url?limit=10000&name=[sha512:hash:base64:7].[ext]' }
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
         ]
     },
     plugins: [
+         new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'lib', filename: 'lib.bundle.js', minChunks: Infinity }),
         new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]), 
         new HtmlWebpackPlugin({ template: 'src/index.html', inject: true }), // generates html
         new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery'}), // You can use $ or jquery in all components
