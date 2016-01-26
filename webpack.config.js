@@ -30,7 +30,6 @@ module.exports = {
     
     devtool: 'source-map',
 
-
     resolve: { extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'] },// Add `.ts` and `.tsx` as a resolvable extension. 
     module: {
         preLoaders: [
@@ -46,12 +45,12 @@ module.exports = {
                 test: /\.tsx?$/, // regex which selects which type of files should be ran through this loader ( .ts or .tsx )
                 loader: 'ts-loader', // loader name
                 query: {
-                'ignoreDiagnostics': [
-                    2403, // 2403 -> Subsequent variable declarations
-                    2300, // 2300 -> Duplicate identifier
-                    2374, // 2374 -> Duplicate number index signature
-                    2375  // 2375 -> Duplicate string index signature
-                ]
+                    'ignoreDiagnostics': [
+                        2403, // 2403 -> Subsequent variable declarations
+                        2300, // 2300 -> Duplicate identifier
+                        2374, // 2374 -> Duplicate number index signature
+                        2375  // 2375 -> Duplicate string index signature
+                    ]
                 } 
             }
         ]

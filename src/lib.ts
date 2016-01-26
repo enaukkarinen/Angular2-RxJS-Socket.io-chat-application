@@ -18,6 +18,4 @@ import "angular2/core";
 // RxJS
 import "rxjs";
 
-import "bootstrap";
-
 // Other vendors for example jQuery, Lodash, angular2-jwt
