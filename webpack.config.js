@@ -18,7 +18,7 @@ module.exports = {
     },
   
     
-    entry: { 'vendor': './src/vendor.ts', 'main': './src/main.ts' }, // angular2.0 app
+    entry: { 'lib': './src/lib.ts', 'main': './src/main.ts' }, // angular2.0 app
     
     // Config for our build files
     output: {

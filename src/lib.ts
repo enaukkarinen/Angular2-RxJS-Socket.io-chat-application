@@ -1,3 +1,4 @@
+
 // Polyfills
 import "es6-shim";
 // (these modules are what are in 'angular2/bundles/angular2-polyfills' so don't use that here)
@@ -16,5 +17,7 @@ import "angular2/core";
 
 // RxJS
 import "rxjs";
+
+import "bootstrap";
 
 // Other vendors for example jQuery, Lodash, angular2-jwt

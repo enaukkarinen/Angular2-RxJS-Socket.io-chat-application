@@ -12,7 +12,7 @@
     "src/custom_typings.d.ts",
     "typings/main.d.ts",
     "src/main.ts",
-    "src/vendor.ts"
+    "src/lib.ts"
   ],
   "filesGlob": [
     "./src/**/*.ts",
