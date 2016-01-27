@@ -31,7 +31,7 @@ export class MessageService {
                 imageHash: 'webpackAndangular2.png'
             },
             {
-                message: 'What is MessageBox?',
+                message: 'What\'s a MessageBox?',
                 username: 'John Papa',
                 datetime: new Date().toLocaleString(),
                 imageHash: 'webpackAndangular2.png'

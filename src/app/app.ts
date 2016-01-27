@@ -25,7 +25,7 @@ import { Board } from './components/messageboard/board';
   { path: '/**', redirectTo: ['Board'] }
 ])
 export class App {
-    name = 'Shitty app';
+    name = 'MessageBox';
 
     constructor() {
 
