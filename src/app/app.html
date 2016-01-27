@@ -1,0 +1,14 @@
+<header>
+    <nav>
+        <h1>Hello {{ name }}</h1>
+        <ul>
+            <li router-active="active">
+                <a [routerLink]=" ['Board'] ">Board</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <router-outlet></router-outlet>
+</main>

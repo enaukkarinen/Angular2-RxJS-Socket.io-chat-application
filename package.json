@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "node ./node_modules/concurrently/src/main.js --kill-others \"npm run dev\" \"npm run express\"",
+    "express": "node src/server.js",
+    "dev": "webpack-dev-server",
     "clean": "rimraf dist",
     "postinstall": "typings install"
   },
@@ -14,6 +16,7 @@
     "bootstrap-sass": "^3.3.6",
     "bootstrap-sass-loader": "^1.0.10",
     "clean-webpack-plugin": "^0.1.6",
+    "concurrently": "^1.0.0",
     "copy-webpack-plugin": "^0.3.3",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -37,9 +40,11 @@
   },
   "dependencies": {
     "angular2": "^2.0.0-beta.1",
+    "body-parser": "^1.14.2",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
     "es7-reflect-metadata": "^1.4.0",
+    "express": "^4.13.4",
     "lodash": "^4.0.1",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.0",

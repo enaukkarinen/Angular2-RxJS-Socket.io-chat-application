@@ -1,15 +1,17 @@
 <div>
     <ul class="media-list">
-    <li class="media">
+    <li class="media" *ngFor="#msg of messages">
         <div class="media-left">
-            <a href="#">
-                <!--<img class="media-object" src="..." alt="..."> -->
-            </a>
+            <img class="media-object" width="80px" height="80px" src="http://localhost:3002/api/image/avatar" alt="...">
         </div>
         <div class="media-body">
-            <h4 class="media-heading">Media_heading</h4>
-                ...
+            <h4 class="media-heading">{{msg.message}}</h4>
+               <p>{{msg.name}}</p>
+               <p>{{msg.username}}</p>
+               <p>{{msg.datetime}}</p>
+               <img ng-src="msg.imageHash" />
             </div>
         </li>
     </ul>
+
 </div>

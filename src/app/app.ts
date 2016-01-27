@@ -5,8 +5,8 @@ import {Component} from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
 
-import { Board } from './components/messageboard/board';
 
+import { Board } from './components/messageboard/board';
 
 /*
  * App Component
@@ -17,29 +17,13 @@ import { Board } from './components/messageboard/board';
   providers: [ ...FORM_PROVIDERS ],
   directives: [ ...ROUTER_DIRECTIVES ],
   pipes: [],
-  template: `
-    <header>
-      <nav>
-        <h1>Hello {{ name }}</h1>
-        <ul>
-          <li router-active="active">
-            <a [routerLink]=" ['Board'] ">Board</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  `
+  template: require('./app.html')
 })
 @RouteConfig([
   { path: '/', component: Board, name: 'Board' },
   { path: '/Board', component: Board, name: 'Board' },
   { path: '/**', redirectTo: ['Board'] }
 ])
-
 export class App {
     name = 'Shitty app';
 
