@@ -1,4 +1,3 @@
-
 import { Injectable } from 'angular2/core';
 import {Http} from 'angular2/http';
 import {Message} from './message';
@@ -7,45 +6,15 @@ import {Message} from './message';
 @Injectable()
 export class MessageService {
 
-    private 
-    messages: Array<Message>;
+    private url: string = 'http://localhost:3002/api/';
 
-    constructor() {
-        this.messages = new Array<Message>(
-            {
-                message: 'Wow! This application is shitty.',
-                username: 'Joe Eames',
-                datetime: new Date().toLocaleString(),
-                imageHash: 'webpackAndangular2.png'
-            },
-            {
-                message: 'What is this?',
-                username: 'Charles Max Wood',
-                datetime: new Date().toLocaleString(),
-                imageHash: 'webpackAndangular2.png'
-            },
-            {
-                message: 'asdfsdgadfas',
-                username: 'Gregg Pollack',
-                datetime: new Date().toLocaleString(),
-                imageHash: 'webpackAndangular2.png'
-            },
-            {
-                message: 'What\'s a MessageBox?',
-                username: 'John Papa',
-                datetime: new Date().toLocaleString(),
-                imageHash: 'webpackAndangular2.png'
-            },
-            {
-                message: 'Who uses webpack nowadays?..',
-                username: 'Dan Wahlin',
-                datetime: new Date().toLocaleString(),
-                imageHash: 'webpackAndangular2.png'
-            }
-        );
-    }
+    constructor(private http: Http) { }
 
     getMessages() {
-        return this.messages;
+        // return an observable. TO-DO: how to type this.
+        return this.http.get(this.url + 'messages')
+            .map((responseData) => {
+                return responseData.json();
+            });
     }
 }

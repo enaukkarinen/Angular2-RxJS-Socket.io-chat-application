@@ -22,10 +22,22 @@ import {MessageService} from './message.service';
 })
 export class Board {
 
+    error: string;
     messages: Array<Message>;
 
     constructor(messageService: MessageService) {
-        this.messages = messageService.getMessages();
+        var messageObs = messageService.getMessages();
+
+        messageObs.subscribe(m => {
+            console.log(m);
+            this.messages = m;
+        }, 
+        error => {
+            this.error = error;
+            console.log(this.error);
+        });
+        
+        console.log('after');
     }
 
     ngOnInit() {

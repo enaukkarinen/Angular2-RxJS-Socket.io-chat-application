@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./node_modules/concurrently/src/main.js --kill-others \"npm run dev\" \"npm run express\"",
     "express": "node src/server.js",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --colors",
     "clean": "rimraf dist",
     "postinstall": "typings install"
   },
