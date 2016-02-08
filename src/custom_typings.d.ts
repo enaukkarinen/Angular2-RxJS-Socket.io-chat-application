@@ -28,3 +28,7 @@ import * as _ from 'lodash'
  * see https://github.com/typings/registry
  *
  */
+
+interface Window {
+  jwt_decode(jwt: string): any;
+}

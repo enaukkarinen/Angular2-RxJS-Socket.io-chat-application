@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./node_modules/concurrently/src/main.js --kill-others \"npm run dev\" \"npm run express\"",
-    "express": "node src/server.js",
+    "express": "node server/server.js",
     "dev": "webpack-dev-server --colors",
     "clean": "rimraf dist",
     "postinstall": "typings install"
@@ -40,12 +40,21 @@
   },
   "dependencies": {
     "angular2": "^2.0.0-beta.2",
+    "angular2-jwt": "^0.1.6",
     "body-parser": "^1.14.2",
+    "cors": "^2.7.1",
+    "dotenv": "^2.0.0",
+    "errorhandler": "^1.4.3",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
     "es7-reflect-metadata": "^1.4.0",
     "express": "^4.13.4",
-    "lodash": "^4.2.0",
+    "express-jwt": "^3.3.0",
+    "fs": "0.0.2",
+    "http": "0.0.0",
+    "jsonwebtoken": "^5.5.4",
+    "lodash": "^4.2.1",
+    "morgan": "^1.6.1",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.0",
     "zone.js": "0.5.10"

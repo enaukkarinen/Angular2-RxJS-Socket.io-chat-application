@@ -6,7 +6,7 @@ import {Message} from './message';
 @Injectable()
 export class MessageService {
 
-    private url: string = 'http://localhost:3002/api/';
+    private url: string = 'http://localhost:3001/api/';
 
     constructor(private http: Http) { }
 

@@ -1,28 +1,26 @@
-/*
- * Providers provided by Angular
- */
-import {provide} from 'angular2/core';
-import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import { bootstrap } from 'angular2/platform/browser';
+import { provide } from 'angular2/core';
+import { FORM_PROVIDERS } from 'angular2/common';
+import { ROUTER_PROVIDERS } from 'angular2/router';
+import { Http, HTTP_PROVIDERS } from 'angular2/http';
+import { AuthConfig, AuthHttp, JwtHelper } from 'angular2-jwt';
 
-/*
- * App Component
- * our top level component that holds all of our components
- */
-import {App} from './app/app';
+import { App } from './app/app';
 
-/*
- * Bootstrap our Angular app with a top level component `App` and inject
- * our Services and Providers into Angular's dependency injection
- */
-document.addEventListener('DOMContentLoaded', function main() {
-  bootstrap(App, [
-    ...('production' === process.env.ENV ? [] : ELEMENT_PROBE_PROVIDERS),
-    ...HTTP_PROVIDERS,
-    ...ROUTER_PROVIDERS,
-    provide(LocationStrategy, { useClass: HashLocationStrategy })
-  ])
-  .catch(err => console.error(err));
-});
-
+bootstrap(
+  App,
+  [
+    FORM_PROVIDERS,
+    ROUTER_PROVIDERS,
+    HTTP_PROVIDERS,
+    JwtHelper,
+    provide(AuthHttp, {
+      useFactory: (http) => {
+        return new AuthHttp(new AuthConfig({
+          tokenName: 'jwt'
+        }), http);
+      },
+      deps: [Http]
+    })
+  ]
+);

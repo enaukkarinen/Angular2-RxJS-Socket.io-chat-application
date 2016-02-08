@@ -18,7 +18,24 @@ module.exports = {
   
     
     entry: { 
-        'lib': './src/lib.ts', 
+        'lib':  [
+            // Polyfills
+            'es6-shim',
+            'es6-promise',
+            'reflect-metadata',
+            'zone.js/dist/zone-microtask',
+            'zone.js/dist/long-stack-trace-zone',
+            // Angular2
+            'angular2/platform/browser',
+            'angular2/platform/common_dom',
+            'angular2/core',
+            'angular2/router',
+            'angular2/http',
+            // RxJS
+            'rxjs',
+            // Other
+            'angular2-jwt'
+        ], 
         'main': './src/main.ts', 
         'bootstrap':  'bootstrap-sass!./src/styles/bootstrap.config.js' },
     
@@ -44,6 +61,7 @@ module.exports = {
         loaders: [
             { 
                 test: /\.tsx?$/, // regex which selects which type of files should be ran through this loader ( .ts or .tsx )
+                exclude: [/node_modules/],
                 loader: 'ts-loader', // loader name
                 query: {
                     'ignoreDiagnostics': [
@@ -67,11 +85,12 @@ module.exports = {
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
-        ]
+        ],
+        noParse: [/.zone-microtask/, /.long-stack-trace-zone/]
     },
     plugins: [
-         new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'lib', filename: 'lib.bundle.js', minChunks: Infinity }),
+        new webpack.optimize.OccurenceOrderPlugin(true),
+        new webpack.optimize.CommonsChunkPlugin({ name: 'lib', filename: 'lib.bundle.js', minChunks: Infinity }),
         new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]), 
         new HtmlWebpackPlugin({ template: 'src/index.html', inject: true }), // generates html
         new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery'}), // You can use $ or jquery in all components

@@ -11,12 +11,10 @@
   "files": [
     "src/custom_typings.d.ts",
     "typings/main.d.ts",
-    "src/main.ts",
-    "src/lib.ts"
+    "src/main.ts"
   ],
   "filesGlob": [
     "./src/**/*.ts",
-    "./test/**/*.ts",
     "!./node_modules/**/*.ts",
     "typings/main.d.ts"
   ],

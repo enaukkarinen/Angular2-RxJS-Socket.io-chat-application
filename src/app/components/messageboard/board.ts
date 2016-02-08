@@ -31,17 +31,16 @@ export class Board {
         messageObs.subscribe(m => {
             console.log(m);
             this.messages = m;
-        }, 
+        },
         error => {
             this.error = error;
             console.log(this.error);
         });
-        
+
         console.log('after');
     }
 
     ngOnInit() {
         console.log('hello board component');
     }
-
 }

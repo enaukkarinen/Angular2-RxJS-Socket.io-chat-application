@@ -1,8 +1,9 @@
 <div>
+    <h4>Board view</h4>
     <ul class="media-list">
         <li class="media" *ngFor="#msg of messages">
             <div class="media-left">
-                <img class="media-object" width="80px" height="80px" src="http://localhost:3002/api/image/avatar" alt="...">
+                <img class="media-object" width="80px" height="80px" src="http://localhost:3001/api/avatar/{{msg.imageHash}}" alt="...">
             </div>
             <div class="media-body">
                 <h4 class="media-heading">{{msg.message}}</h4>
