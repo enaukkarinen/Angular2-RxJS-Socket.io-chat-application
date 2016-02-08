@@ -7,6 +7,8 @@ List of webpack loaders used:
 
 To see the full list of available loaders go to <a href="https://webpack.github.io/docs/list-of-loaders.html">webpack loaders</a>.
 
+This boilerplate includes Typings(typeScript definition manager), which is somewhat redundant as typedefinitions for NG2 and RxJS are maintained in the npm packages. You can still add the regular d.ts files with 'typings install <package>' command.
+
 References:
 - https://github.com/AngularClass/angular2-webpack-starter
 - https://github.com/joeeames/WebpackFundamentalsCourse
