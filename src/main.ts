@@ -1,5 +1,5 @@
 /// <reference path="./custom_typings.d.ts" />
-
+///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
 import { bootstrap } from 'angular2/platform/browser';
 import { provide } from 'angular2/core';
 import { FORM_PROVIDERS } from 'angular2/common';
