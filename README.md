@@ -4,6 +4,11 @@ REPOSITORY UNDER CONSTRUCTION
 List of webpack loaders used:
 - <a href="https://github.com/TypeStrong/ts-loader">ts-loader</a>
 - <a href="https://github.com/wbuchwalter/tslint-loader">tslint-loader</a>
+- <a href="https://github.com/webpack/style-loader">style-loader</a>
+- <a href="https://github.com/webpack/css-loader">css-loader</a>
+- <a href="https://github.com/jtangelder/sass-loader">sass-loader</a>
+- <a href="https://www.npmjs.com/package/url-loader">url-loader</a>
+
 
 To see the full list of available loaders go to <a href="https://webpack.github.io/docs/list-of-loaders.html">webpack loaders</a>.
 
