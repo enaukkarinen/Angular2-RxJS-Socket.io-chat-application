@@ -18,7 +18,7 @@ let template = require('./app.html');
 @RouteConfig([
     { path: '/', redirectTo: ['/Home'] },
     { path: '/board', component: Board, name: 'Board' },
-    { path: '/home...', component: Home, as: 'Home' },
+    { path: '/home', component: Home, as: 'Home' },
     { path: '/login', component: Login, as: 'Login' },
     { path: '/signup', component: Signup, as: 'Signup' }
 ])
@@ -27,3 +27,4 @@ export class App {
     constructor(public router: Router) {
     }
 }
+

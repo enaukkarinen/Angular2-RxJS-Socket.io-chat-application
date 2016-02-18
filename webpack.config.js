@@ -34,7 +34,8 @@ module.exports = {
             // RxJS
             'rxjs',
             // Other
-            'angular2-jwt'
+            'angular2-jwt',
+            'socket.io-client'
         ], 
         'main': './src/main.ts', 
         'bootstrap':  'bootstrap-sass!./src/styles/bootstrap.config.js' },

@@ -30,11 +30,11 @@ export class Home {
     }
 
     callAnonymousApi() {
-        this._callApi('Anonymous', 'http://localhost:3001/api/messages');
+        this._callApi('Anonymous', 'http://localhost:7203/api/messages');
     }
 
     callSecuredApi() {
-        this._callApi('Secured', 'http://localhost:3001/api/protected/messages');
+        this._callApi('Secured', 'http://localhost:7203/api/protected/messages');
     }
 
     _callApi(type, url) {
