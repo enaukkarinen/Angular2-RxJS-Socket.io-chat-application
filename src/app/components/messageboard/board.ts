@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {Row} from './row';
 import {Message} from './message';
 import {MessageService} from './message.service';
 
@@ -11,7 +12,7 @@ import {MessageService} from './message.service';
     providers: [MessageService],
     // We need to tell Angular's compiler which directives are in our template.
     // Doing so will allow Angular to attach our behavior to an element
-    directives: [Message
+    directives: [Row
     ],
     // We need to tell Angular's compiler which custom pipes are in our template.
     pipes: [],
@@ -24,20 +25,40 @@ export class Board {
 
     error: string;
     messages: Array<Message>;
-
+    draftMessage: Message;
+    
     constructor(messageService: MessageService) {
         var messageObs = messageService.getMessages();
 
         messageObs.subscribe(m => {
             this.messages = m;
+            var d: string = this.messages[0].datetime;
+            console.log(d);
+            console.log(this.messages);
         },
-        error => {
-            this.error = error;
-            console.log(this.error);
-        });
+            error => {
+                this.error = error;
+                console.log(this.error);
+            });
     }
 
+
+    onEnter(event: any): void {
+        this.sendMessage();
+        event.preventDefault();
+    }
+
+    sendMessage(): void {
+        let m: Message = this.draftMessage;
+        m.username = "ensio";//this.currentUser;
+        m.avatar = "avatar";
+        //m.isRead = true;
+        //this.messagesService.addMessage(m);
+        this.messages.push(m);
+        console.log(m);
+        this.draftMessage = new Message();
+    }
     ngOnInit() {
-        //console.log('hello board component');
+        this.draftMessage = new Message();
     }
 }

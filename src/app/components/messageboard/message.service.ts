@@ -1,7 +1,5 @@
 import { Injectable } from 'angular2/core';
 import {Http} from 'angular2/http';
-import {Message} from './message';
-
 
 @Injectable()
 export class MessageService {

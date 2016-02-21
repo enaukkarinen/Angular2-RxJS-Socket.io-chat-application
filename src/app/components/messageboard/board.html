@@ -1,18 +1,15 @@
 <div>
     <h4>Board view</h4>
     <ul class="chat">
-        <li class="left clearfix" *ngFor="#msg of messages">
-            <nb-message></nb-message>
-            <!--<div class="media-left">
-                <img class="media-object" width="80px" height="80px" src="http://localhost:7203/api/avatar/{{msg.imageHash}}" alt="...">
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">{{msg.message}}</h4>
-                <p>{{msg.name}}</p>
-                <p>{{msg.username}}</p>
-                <p>{{msg.datetime}}</p>
-                <img ng-src="msg.imageHash" />
-            </div>-->
+        <li class="left clearfix" *ngFor="#msg of messages; #idx = index">
+            <nb-row [message]="msg"></nb-row>
         </li>
+        <p style="min-height: 10px;"></p>
+        <div class="input-group">
+            <input type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." (keydown.enter)="onEnter($event)" [(ngModel)]="draftMessage.message"/>
+            <span class="input-group-btn">
+                <button class="btn btn-primary btn-sm" (click)="onEnter($event)">Send</button>
+            </span>
+        </div>
     </ul>
 </div>

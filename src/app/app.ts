@@ -6,7 +6,6 @@ import { Board } from './components/messageboard/board';
 import {Home} from './components/home/home';
 import {Login} from './components/authentication/login';
 import {Signup} from './components/authentication/signup';
-import {Message} from './components/messageboard/message';
 let template = require('./app.html');
 
 @Component({
@@ -14,7 +13,7 @@ let template = require('./app.html');
 })
 @View({
     template: template,
-    directives: [LoggedInRouterOutlet, Message]
+    directives: [LoggedInRouterOutlet]
 })
 @RouteConfig([
     { path: '/', redirectTo: ['/Home'] },

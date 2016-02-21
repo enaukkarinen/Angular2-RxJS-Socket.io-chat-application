@@ -25,9 +25,7 @@ bootstrap(
   ]
 );
 
-
 var io = require('socket.io-client');
-
 var socket = io('http://localhost:7203');
 
 socket.emit('new message', 'on init test message!!!');

@@ -3,6 +3,21 @@ body {
     background: url('../assets/tweed.png') repeat;
 }
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.home {
+    border: 1px solid darken(white, 20%);
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+   @include border-radius(10px);
+}
+
 .chat
 {
     list-style: none;
