@@ -18,10 +18,7 @@ bootstrap(
     HTTP_PROVIDERS,
     JwtHelper,
     provide(AuthHttp, {
-      useFactory: (http) => {
-        return new AuthHttp(new AuthConfig({
-          tokenName: 'jwt'
-        }), http);
+      useFactory: (http) => { return new AuthHttp(new AuthConfig({ tokenName: 'jwt' }), http);
       },
       deps: [Http]
     })

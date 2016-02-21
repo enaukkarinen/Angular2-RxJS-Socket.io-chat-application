@@ -1,5 +1,8 @@
 <div>
     <div class="home jumbotron centered">
+        <nb-board></nb-board>
+    </div>
+    <div class="home jumbotron centered">
         <h2 *ngIf="jwt">Your JWT is:</h2>
         <pre *ngIf="jwt" class="jwt"><code>{{ jwt }}</code></pre>
         <pre *ngIf="jwt" class="jwt"><code>{{ decodedJwt | json }}</code></pre>
@@ -9,8 +12,5 @@
         <p><a class="btn btn-primary btn-lg" role="button" (click)="logout()">Logout</a></p>
         <h2 *ngIf="response">The response of calling the <span class="red">{{api}}</span> API is:</h2>
         <h3 *ngIf="response">{{response}}</h3>
-    </div>
-    <div class="home jumbotron centered">
-        <nb-board></nb-board>
     </div>
 </div>

@@ -1,14 +1,18 @@
+import {Component} from 'angular2/core';
+@Component({
+    selector: 'nb-message',
+    providers: [],
+    styles: [],
+    // Every Angular template is first compiled by the browser before Angular runs it's compiler
+    template: require('./message.html')
+})
 
 export class Message {
-    message: string;
-    username: string;
-    datetime: string;
-    imageHash: string;
+  @Output()
+  change = new EventEmitter<any>();
+  @Input()
+  label: string;
 
-    constructor(m: string, u: string, d: string, i: string) {
-        this.message = m;
-        this.username = u;
-        this.datetime = d;
-        this.imageHash = i;
+    constructor() {
     }
 }
