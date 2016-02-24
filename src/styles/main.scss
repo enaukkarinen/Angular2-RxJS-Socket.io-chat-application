@@ -54,6 +54,16 @@ body {
     margin: 5px;    
 }
 
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 400px;
+}
 ::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);

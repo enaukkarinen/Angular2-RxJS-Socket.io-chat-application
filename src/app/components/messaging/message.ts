@@ -1,11 +1,11 @@
 
 export class Message {
     username: string;
-    datetime: string;
+    datetime: Date;
     avatar: string;
     message: string;
 
-    constructor(u: string, d: string, a: string, m: string) {
+    constructor(u: string, d: Date, a: string, m: string) {
         this.username = u;
         this.datetime = d;
         this.avatar = a;

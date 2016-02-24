@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {AfterViewChecked, Component, ElementRef, ViewChild} from 'angular2/core';
 import {MessageRow} from './messagerow';
 import {Message} from './message';
 import {MessageService} from './message.service';
@@ -20,8 +20,9 @@ import {MessageService} from './message.service';
     // Every Angular template is first compiled by the browser before Angular runs it's compiler
     template: require('./messagebox.html')
 })
-export class MessageBox {
-
+export class MessageBox implements AfterViewChecked {
+    @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+    
     error: string;
     messages: Array<Message>;
     draftMessage: Message;
@@ -31,7 +32,7 @@ export class MessageBox {
 
         messageObs.subscribe(m => {
             this.messages = m;
-            var d: string = this.messages[0].datetime;
+            var d = this.messages[0].datetime;
         },
             error => {
                 this.error = error;
@@ -51,9 +52,22 @@ export class MessageBox {
         //m.isRead = true;
         //this.messagesService.addMessage(m);
         this.messages.push(m);
-        this.draftMessage = new Message('', new Date().toLocaleString(), 'avatar', '');
+        this.draftMessage = new Message('', new Date(), 'avatar', '');
     }
+    
     ngOnInit() {
-        this.draftMessage = new Message('', new Date().toLocaleString(), 'avatar', '');
+        this.draftMessage = new Message('', new Date(), 'avatar', '');
     }
+    
+    ngAfterViewChecked() {        
+        this.scrollToBottom();        
+    } 
+    
+    scrollToBottom(): void {
+        console.log("scrollToBottom");
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch(err) { }                 
+    }
+    
 }

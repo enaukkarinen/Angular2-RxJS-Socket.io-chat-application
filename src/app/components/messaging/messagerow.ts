@@ -33,6 +33,9 @@ export class MessageRow {
     }
     
     ngOnInit(){
+        
+        this.calcTimeAgo(this.message.datetime);
+        
         if(isNaN(MessageRow.newIndex)) {
             MessageRow.newIndex = 0;
         }
@@ -44,5 +47,18 @@ export class MessageRow {
             this.messageMode = MessageRow.newIndex % 2 == 1 ? 1: 0;
         
         MessageRow.latestUser = this.message.username;
+    }
+    
+    calcTimeAgo(messageTime :Date) {
+        
+        var today = new Date();
+        var Christmas = messageTime;
+        console.log(messageTime);
+        console.log(this.message);
+        var diffMs = (Christmas.valueOf() - Date.now()); // milliseconds between now & Christmas
+        var diffDays = Math.round(diffMs / 86400000); // days
+        var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+        console.log(diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes until Christmas 2009 =)");
     }
 }
