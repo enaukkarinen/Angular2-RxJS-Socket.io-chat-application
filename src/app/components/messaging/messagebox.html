@@ -1,8 +1,8 @@
 <div>
     <h4>Board view</h4>
     <ul class="chat">
-        <li class="left clearfix" *ngFor="#msg of messages; #idx = index">
-            <nb-row [message]="msg"></nb-row>
+        <li *ngFor="#msg of messages; #idx = index">
+            <nb-messagerow [message]="msg"></nb-messagerow>
         </li>
         <p style="min-height: 10px;"></p>
         <div class="input-group">

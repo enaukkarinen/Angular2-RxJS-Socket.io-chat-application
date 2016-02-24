@@ -2,7 +2,7 @@ import {View, Component} from 'angular2/core';
 import {Location, RouteConfig, RouterLink, Router} from 'angular2/router';
 
 import {LoggedInRouterOutlet} from './logged_in_outlet';
-import { Board } from './components/messageboard/board';
+import { MessageBox } from './components/messaging/messagebox';
 import {Home} from './components/home/home';
 import {Login} from './components/authentication/login';
 import {Signup} from './components/authentication/signup';
@@ -17,7 +17,6 @@ let template = require('./app.html');
 })
 @RouteConfig([
     { path: '/', redirectTo: ['/Home'] },
-    { path: '/board', component: Board, name: 'Board' },
     { path: '/home', component: Home, as: 'Home' },
     { path: '/login', component: Login, as: 'Login' },
     { path: '/signup', component: Signup, as: 'Signup' }

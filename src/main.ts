@@ -44,3 +44,11 @@ socket.on('chat message', function(msg){
 $('#messages').append($('<li>').text(msg));
 });
 */
+
+var today = new Date();
+var Christmas = new Date("12-25-2012");
+var diffMs = (Christmas.valueOf() - Date.now()); // milliseconds between now & Christmas
+var diffDays = Math.round(diffMs / 86400000); // days
+var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+console.log(diffDays + " days, " + diffHrs + " hours, " + diffMins + " minutes until Christmas 2009 =)");

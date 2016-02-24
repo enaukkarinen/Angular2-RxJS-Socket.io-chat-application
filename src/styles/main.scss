@@ -49,15 +49,9 @@ body {
     color: #777777;
 }
 
-.panel .slidedown .glyphicon, .chat .glyphicon
+.chat li .chat-img
 {
-    margin-right: 5px;
-}
-
-.panel-body
-{
-    overflow-y: scroll;
-    height: 250px;
+    margin: 5px;    
 }
 
 ::-webkit-scrollbar-track

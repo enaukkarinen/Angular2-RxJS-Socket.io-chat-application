@@ -4,13 +4,13 @@ import { Http, Headers } from 'angular2/http';
 import { AuthHttp, JwtHelper } from 'angular2-jwt';
 import { Router } from 'angular2/router';
 
-import {Board} from './../messageboard/board';
+import {MessageBox} from './../messaging/messagebox';
 
 @Component({
     selector: 'home'
 })
 @View({
-    directives: [CORE_DIRECTIVES, Board],
+    directives: [CORE_DIRECTIVES, MessageBox],
     template: require('./home.html')
 })
 export class Home {
