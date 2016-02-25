@@ -23,21 +23,13 @@ import {MessageService} from './message.service';
 export class MessageBox implements AfterViewChecked {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
     
-    error: string;
     messages: Array<Message>;
     draftMessage: Message;
 
     constructor(messageService: MessageService) {
         var messageObs = messageService.getMessages();
 
-        messageObs.subscribe(m => {
-            this.messages = m;
-            var d = this.messages[0].datetime;
-        },
-            error => {
-                this.error = error;
-                console.log(this.error);
-            });
+        messageObs.subscribe(m => { this.messages = m; }, error => { console.log(error); });
     }
 
     onEnter(event: any): void {
@@ -49,6 +41,7 @@ export class MessageBox implements AfterViewChecked {
         let m: Message = this.draftMessage;
         m.username = 'ensio'; //this.currentUser;
         m.avatar = 'avatar';
+        m.datetime = new Date();
         //m.isRead = true;
         //this.messagesService.addMessage(m);
         this.messages.push(m);
@@ -64,10 +57,9 @@ export class MessageBox implements AfterViewChecked {
     } 
     
     scrollToBottom(): void {
-        console.log("scrollToBottom");
         try {
             this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-        } catch(err) { }                 
+        } catch(err) { console.log(err)};                 
     }
     
 }

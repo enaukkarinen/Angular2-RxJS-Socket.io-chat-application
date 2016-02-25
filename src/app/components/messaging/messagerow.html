@@ -5,9 +5,12 @@
     </span>
     <div class="chat-body clearfix">
         <div class="header">
-            <strong class="primary-font">{{message.username}}</strong> <small class="pull-right text-muted">
-                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+            <strong class="primary-font">{{message.username}}</strong> 
+            <small class="pull-right text-muted">
+                <span class="glyphicon glyphicon-time"></span>{{timeAgo}}
+            </small>
         </div>
+        
         <p>{{message.message}}</p>
     </div>
 </div>
@@ -19,10 +22,11 @@
     <div class="chat-body clearfix">
         <div class="header">
             <small class=" text-muted">
-            <span class="glyphicon glyphicon-time"></span>13 mins ago
+                <span class="glyphicon glyphicon-time"></span>{{timeAgo}}
             </small>
             <strong class="pull-right primary-font">{{message.username}}</strong>
         </div>
+        
         <p>{{message.message}}</p>
     </div>
 </div>

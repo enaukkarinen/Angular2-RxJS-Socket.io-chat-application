@@ -10,31 +10,31 @@ var messages = [
     {
         message: 'Wow! This application is shitty.',
         username: 'Joe Eames',
-        datetime: new Date().toLocaleString(),
+        datetime: new Date("October 13, 2015 11:13:00").toISOString(),
         avatar: 'avatar'
     },
     {
         message: 'What is this?',
         username: 'Charles Max Wood',
-        datetime: new Date().toLocaleString(),
+        datetime: new Date("January 13, 2016 11:13:00").toISOString(),
         avatar: 'avatar'
     },
     {
         message: 'asdfsdgadfas',
         username: 'Gregg Pollack',
-        datetime: new Date().toLocaleString(),
+        datetime: new Date("February 2, 2016 11:13:00").toISOString(),
         avatar: 'avatar'
     },
     {
         message: 'What\'s a MessageBox?',
         username: 'John Papa',
-        datetime: new Date().toLocaleString(),
+        datetime: new Date("February 13, 2016 11:13:00").toISOString(),
         avatar: 'avatar'
     },
     {
         message: 'Who uses webpack nowadays?..',
         username: 'Dan Wahlin',
-        datetime: new Date().toLocaleString(),
+        datetime: new Date("February 22, 2016 11:13:00").toISOString(),
         avatar: 'avatar'
     }
 ];
