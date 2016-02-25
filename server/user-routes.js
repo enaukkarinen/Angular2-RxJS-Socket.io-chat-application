@@ -60,7 +60,9 @@ app.post('/users', function(req, res) {
   users.push(profile);
 
   res.status(201).send({
-    id_token: createToken(profile)
+    id_token: createToken(profile),
+    username: userScheme.username,
+    avatar: 'avatar'
   });
 });
 
@@ -83,6 +85,8 @@ app.post('/sessions/create', function(req, res) {
   }
 
   res.status(201).send({
-    id_token: createToken(user)
+    id_token: createToken(user),
+    username: userScheme.username,
+    avatar: 'avatar'
   });
 });

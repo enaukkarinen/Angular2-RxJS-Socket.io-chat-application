@@ -34,7 +34,7 @@ export class MessageRow {
 
     ngOnInit() {
         this.timeAgo = this.calcTimeAgo(this.message.datetime);
-        
+
         if (isNaN(MessageRow.newIndex)) {
             MessageRow.newIndex = 0;
         }
@@ -48,7 +48,7 @@ export class MessageRow {
         MessageRow.latestUser = this.message.username;
     }
 
-    calcTimeAgo(messageTime: Date) :string {
+    calcTimeAgo (messageTime: Date): string {
 
         var today = new Date();
         /*
@@ -56,80 +56,63 @@ export class MessageRow {
         console.log("messageTime in local:" + new Date(messageTime.toString() ));
         console.log("today: " + today.toISOString());
         */
-        var diffMs = Math.abs(new Date(messageTime.toString()).getTime() - today.getTime()); // milliseconds between now & Christmas
-        console.log('diffMs: ' + diffMs);
-        
+        var diffMs = Math.abs(new Date(messageTime.toString()).getTime()
+         - today.getTime()); // milliseconds between now & Christmas
+        //console.log('diffMs: ' + diffMs);
 
         var diffDays = Math.round(diffMs / 86400000); // days
         if (diffDays >= 7) {
             var weekCount = Math.floor(diffDays / 7);
             if (weekCount >= 4) {
                 var monthCount = Math.floor(weekCount / 4);
-                if (monthCount == 1) {
+                if (monthCount === 1) {
                     return '1 month ago';
-                }
-                else {
+                } else {
                     return monthCount + ' months ago';
                 }
-            }
-            else if (weekCount < 4 && weekCount > 1) {
+            } else if (weekCount < 4 && weekCount > 1) {
                 return weekCount + ' weeks ago';
-            }
-            else {
+            } else {
                 return '1 week ago';
             }
-        }
-        else if (diffDays < 7 && diffDays > 1) {
+        } else if (diffDays < 7 && diffDays > 1) {
             return diffDays + ' days ago';
-        }
-        else if (diffDays == 1) {
+        } else if (diffDays === 1) {
             return '1 day ago';
-        }
-        else {
+        } else {
             var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
-            console.log('diffHrs: ' + diffHrs);
-        
+            //console.log('diffHrs: ' + diffHrs);
+
             if (diffHrs > 1) {
                 return diffHrs + 'hours ago';
-            }
-            else if (diffHrs == 1) {
-                return '1 hour ago;'
-            }
-            else {
+            } else if (diffHrs === 1) {
+                return '1 hour ago';
+            } else {
                 var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
                 //console.log('diffMins: ' + diffMins);
-        
-                if(diffMins > 1) {
+
+                if (diffMins > 1) {
                     return diffMins + ' minutes ago';
-                }
-                else if (diffMins == 1){
+                } else if (diffMins === 1) {
                     return '1 minute ago';
-                }
-                else {
+                } else {
                     var diffSeconds = Math.round(diffMs / 1000);
-                    
-                    if(diffMins >= 3) {
+
+                    if (diffMins >= 3) {
                         return diffSeconds + ' seconds ago';
-                    }
-                    else {
+                    } else {
                         return 'a moment ago';
                     }
                 }
-                
             }
-
         }
         //console.log('diffDays: ' + diffDays);
-        
         //var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
         //console.log('diffHrs: ' + diffHrs);
-        
         //var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
         //console.log('diffMins: ' + diffMins);
-        
         //var dffSeconds = Math.round(diffMs / 1000);
         //console.log('dffSeconds: ' + dffSeconds);
-        
         //console.log(diffDays + ' days, ' + diffHrs + ' hours, ' + diffMins + ' minutes from now');
     }
 }

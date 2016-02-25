@@ -4,53 +4,31 @@ import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import { Http, Headers } from 'angular2/http';
 import { contentHeaders } from './headers';
 
+import {UserService} from './user.service';
 
 @Component({
-    selector: 'login'
+    selector: 'login',
+    providers: [UserService],
 })
 @View({
     directives: [RouterLink, CORE_DIRECTIVES, FORM_DIRECTIVES],
-    template: `
-    <div class="login jumbotron center-block">
-        <h1>Login</h1>
-        <form role="form" (submit)="login($event, username.value, password.value)">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" #username class="form-control" id="username" placeholder="Username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" #password class="form-control" id="password" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-                <a [routerLink]="['Signup']">Click here to Signup</a>
-        </form>
-    </div>
-    `,
-    styles: [`
-        .login {
-        width: 40%;
-        }
-  `]
+    template: require('./login.html')
 })
 export class Login {
-    constructor(public router: Router, public http: Http) {
+    
+    constructor(private router: Router, private userService: UserService) {
+        // react to user change
+        this.userService.currentUser.subscribe(u => {
+            if (u !== null) {
+                console.log('reacting to user change: ' + u);
+                this.router.parent.navigateByUrl('/home');
+            }
+        });
     }
 
     login(event, username, password) {
         event.preventDefault();
-        let body = JSON.stringify({ username, password });
-        this.http.post('http://localhost:7203/sessions/create', body, { headers: contentHeaders })
-            .subscribe(
-            response => {
-                localStorage.setItem('jwt', response.json().id_token);
-                this.router.parent.navigateByUrl('/home');
-            },
-            error => {
-                alert(error.text());
-                console.log(error.text());
-            }
-            );
+        this.userService.login(username, password);
     }
 
     signup(event) {

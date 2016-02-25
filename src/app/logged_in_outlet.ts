@@ -2,6 +2,7 @@ import {Directive, Attribute, ElementRef, DynamicComponentLoader} from 'angular2
 import {Router, RouterOutlet, ComponentInstruction} from 'angular2/router';
 import {Login} from './components/authentication/login';
 import {Signup} from './components/authentication/signup';
+
 @Directive({
   selector: 'router-outlet'
 })

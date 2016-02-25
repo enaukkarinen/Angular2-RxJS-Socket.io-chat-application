@@ -5,9 +5,12 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 import { Router } from 'angular2/router';
 
 import {MessageBox} from './../messaging/messagebox';
+import {User} from '../authentication/user';
+import {UserService} from '../authentication/user.service';
 
 @Component({
-    selector: 'home'
+    selector: 'home',
+    providers: [UserService]
 })
 @View({
     directives: [CORE_DIRECTIVES, MessageBox],
@@ -18,10 +21,19 @@ export class Home {
     decodedJwt: string;
     response: string;
     api: string;
+    user: User = new User('', '');
 
-    constructor(public router: Router, public http: Http, public authHttp: AuthHttp, public jwtHelper: JwtHelper) {
+    constructor(public router: Router, public http: Http, public authHttp: AuthHttp, public jwtHelper: JwtHelper, private userService: UserService) {
         this.jwt = localStorage.getItem('jwt');
         this.decodedJwt = this.jwt && this.jwtHelper.decodeToken(this.jwt);
+        
+        // react to user change
+        this.userService.currentUser.subscribe(u => {
+            console.log('Home reacting to user change: ' + u);
+            if (u !== null) {
+                this.user = u;
+            }
+        });
     }
 
     logout() {

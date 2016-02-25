@@ -22,7 +22,7 @@ import {MessageService} from './message.service';
 })
 export class MessageBox implements AfterViewChecked {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
-    
+
     messages: Array<Message>;
     draftMessage: Message;
 
@@ -47,19 +47,21 @@ export class MessageBox implements AfterViewChecked {
         this.messages.push(m);
         this.draftMessage = new Message('', new Date(), 'avatar', '');
     }
-    
+
     ngOnInit() {
         this.draftMessage = new Message('', new Date(), 'avatar', '');
     }
-    
-    ngAfterViewChecked() {        
-        this.scrollToBottom();        
-    } 
-    
+
+    ngAfterViewChecked() {
+        this.scrollToBottom();
+    }
+
     scrollToBottom(): void {
         try {
             this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-        } catch(err) { console.log(err)};                 
+        } catch (err) {
+            console.log(err);
+        };
     }
-    
+
 }
