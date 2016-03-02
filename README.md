@@ -1,4 +1,4 @@
-# Noob's guide to Angular 2.0 & Webpack
+# Angular2-Socket.io-Webpack-demo
 REPOSITORY UNDER CONSTRUCTION
 
 List of webpack loaders used:
