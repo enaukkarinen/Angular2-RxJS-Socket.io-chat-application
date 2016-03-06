@@ -55,12 +55,12 @@ io.on('connection', function (socket) {
 var addedUser = false;
 
   // when the client emits 'new message', this listens and executes
-  socket.on('new message', function (data) {
+  socket.on('new message', function (msg) {
       console.log('noticed new message');
-      console.log(data);
-      
-    // we tell the client to execute 'new message'
-    socket.emit('message', data);
+      console.log(msg);
+    
+    socket.emit('message', msg); // Send message to sender
+    socket.broadcast.emit('message', msg); // Send message to everyone BUT sender
   });
 
   // when the client emits 'add user', this listens and executes

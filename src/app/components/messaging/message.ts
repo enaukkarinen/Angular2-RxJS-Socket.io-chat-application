@@ -15,7 +15,7 @@ export class Message {
         this.username = obj && obj.username || null;
         this.datetime = obj && obj.datetime || new Date();
         this.avatar   = obj && obj.avatar   || 'avatar';
-        this.message  = obj && obj.text     || null;
+        this.message  = obj && obj.message  || null;
   }
 }
 

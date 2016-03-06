@@ -25,13 +25,14 @@ import {Observable} from 'rxjs';
 export class MessageBox implements AfterViewChecked {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-    messages: Array<Message> = [];
+    messages: Array<any> = [];
     draftMessage: Message;
     messages2: Observable<any>;
 
     constructor(private messageService: MessageService) {
 
         this.messageService.getMessages().subscribe(m => { 
+            console.log(m);
             this.messages = m; }, 
             error => { console.log(error); 
         });
@@ -41,7 +42,7 @@ export class MessageBox implements AfterViewChecked {
                 this.messages.push(m);
             }
         },
-        (e) => {console.log(e)});
+        (e) => console.log(e));
     }
 
     onEnter(event: any): void {
@@ -54,9 +55,7 @@ export class MessageBox implements AfterViewChecked {
         m.username = 'ensio'; //this.currentUser;
         m.avatar = 'avatar';
         m.datetime = new Date().toISOString();
-        //m.isRead = true;
-        //this.messagesService.addMessage(m);
-        //this.messages.push(m);
+        console.log('draftmessage: ' + m.message );
 
         this.messageService.sendMessage(m);
 

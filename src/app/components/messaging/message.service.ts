@@ -22,14 +22,14 @@ export class MessageService {
 
         this.socket.on('message', (msg) => {  
             console.log('socket on new message');
-            console.log(msg);
-            this.newMessage.next(new Message(msg)); 
+            let m = new Message(JSON.parse(msg));
+            this.newMessage.next(m); 
         });
     }
 
     getMessages(): Observable<any> {
         return this.http.get(this.url + 'messages')
-        .map((responseData) => { return new Message(responseData.json()); });
+        .map((responseData) => { return responseData.json(); });
     }
 
     sendMessage(message: Message): void {
