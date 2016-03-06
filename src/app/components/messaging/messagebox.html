@@ -10,7 +10,7 @@
     <div class="panel-footer">
         <p style="min-height: 10px;"></p>
         <div class="input-group">
-        <input type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." (keydown.enter)="onEnter($event)" [(ngModel)]="draftMessage.message"/>
+        <input type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." (keydown.enter)="onEnter($event)" [(ngModel)]="draftMessageText"/>
         <span class="input-group-btn">
             <button class="btn btn-primary btn-sm" (click)="onEnter($event)">Send</button>
         </span>

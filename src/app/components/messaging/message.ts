@@ -8,7 +8,7 @@ export class Message {
     datetime: string;
     avatar: string;
     message: string;
-
+    isLoading: boolean;
     
     constructor(obj?: any) {
         this.id       = obj && obj.id       || uuid();
@@ -16,6 +16,7 @@ export class Message {
         this.datetime = obj && obj.datetime || new Date();
         this.avatar   = obj && obj.avatar   || 'avatar';
         this.message  = obj && obj.message  || null;
+        this.isLoading  = obj && obj.isLoading  || false;
   }
 }
 

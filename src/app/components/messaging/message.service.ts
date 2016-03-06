@@ -11,9 +11,9 @@ export class MessageService {
     private url: string = 'http://localhost:9000/api/';
     private socketUrl: string = 'http://localhost:9000';
     private socket: Socket;
+    
     newMessage: Subject<Message> = new BehaviorSubject<Message>(null);
-
-    currentThreadMessages: ConnectableObservable<any>;
+    receivedMessage: Subject<string> = new Subject<string>(null);
     
     constructor(private http: Http) { 
         this.getMessages();
@@ -22,8 +22,14 @@ export class MessageService {
 
         this.socket.on('message', (msg) => {  
             console.log('socket on new message');
-            let m = new Message(JSON.parse(msg));
-            this.newMessage.next(m); 
+            console.log(msg);
+            this.newMessage.next(new Message(JSON.parse(msg))); 
+        });
+        
+        this.socket.on('message received', (msgId) => {  
+            console.log('socket on message received');
+            console.log(msgId);
+            this.receivedMessage.next(msgId); 
         });
     }
 

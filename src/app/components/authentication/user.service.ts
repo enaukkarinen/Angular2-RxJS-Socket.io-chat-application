@@ -41,9 +41,9 @@ export class UserService {
     }
     
     getCurrentUser(): User {
-        if(this.currentUser == null) {
+        if (this.currentUser == null) {
             let jwt = localStorage.getItem('jwt');
-            if(jwt) {
+            if (jwt) {
                 this.currentUser = new User(this.jwtHelper.decodeToken(jwt));
             } else
                 this.authError.next('no user signed in.');

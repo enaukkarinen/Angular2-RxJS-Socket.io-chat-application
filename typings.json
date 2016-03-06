@@ -1,12 +1,13 @@
 {
     "dependencies": {
-        "es6-promise": "github:typed-typings/npm-es6-promise#fb04188767acfec1defd054fc8024fafa5cd4de7"
+        "es6-promise": "github:typed-typings/npm-es6-promise#fb04188767acfec1defd054fc8024fafa5cd4de7",
+        "lodash": "github:typed-typings/npm-lodash#65781ee6b25562ee9b5913043a3ba249acfcee17"
     },
     "devDependencies": {},
     "ambientDependencies": {
+        "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#6697d6f7dadbf5773cb40ecda35a76027e0783b2",
         "ng2": "github:gdi2290/typings-ng2/ng2.d.ts#32998ff5584c0eab0cd9dc7704abb1c5c450701c",
         "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#8cf8164641be73e8f1e652c2a5b967c7210b6729",
-        "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#6697d6f7dadbf5773cb40ecda35a76027e0783b2",
         "zone.js": "github:DefinitelyTyped/DefinitelyTyped/zone.js/zone.js.d.ts#c393f8974d44840a6c9cc6d5b5c0188a8f05143d"
     }
 }

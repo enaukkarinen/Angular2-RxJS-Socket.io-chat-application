@@ -4,7 +4,7 @@ import {Message} from './message';
 import {MessageService} from './message.service';
 import {UserService} from '../authentication/user.service';
 import {Observable} from 'rxjs';
-
+import * as _ from 'lodash';
 
 @Component({
     // The selector is what angular internally uses
@@ -27,8 +27,7 @@ export class MessageBox implements AfterViewChecked {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
     messages: Array<any> = [];
-    draftMessage: Message;
-    messages2: Observable<any>;
+    draftMessageText: string;
 
     constructor(private messageService: MessageService, private userService: UserService) {
 
@@ -38,11 +37,13 @@ export class MessageBox implements AfterViewChecked {
         });
 
         this.messageService.newMessage.subscribe( m => {
-            if(m != null) {
+            console.log(m);
+            if (m != null) {
                 this.messages.push(m);
             }
         },
         (e) => console.log(e));
+        
     }
 
     onEnter(event: any): void {
@@ -51,26 +52,17 @@ export class MessageBox implements AfterViewChecked {
     }
 
     sendMessage(): void {
-        let m: Message = this.draftMessage;
-        m.username = 'ensio'; //this.currentUser;
-        m.avatar = 'avatar';
-        m.datetime = new Date().toISOString();
-
+        let user = this.userService.getCurrentUser();
+        let m = new Message({
+            username: user.username,
+            avatar: user.avatar,
+            datetime: new Date().toISOString(),
+            isLoading: true,
+            message: this.draftMessageText
+        });
+        this.draftMessageText = '';
+        this.messages.push(m);
         this.messageService.sendMessage(m);
-
-        this.draftMessage = new Message(
-            {
-                username: 'ensio',
-                datetime: new Date().toISOString()     
-            });
-    }
-
-    ngOnInit() {
-        this.draftMessage = new Message(
-            {
-                username: 'ensio',
-                datetime: new Date().toISOString()     
-            });
     }
 
     ngAfterViewChecked() {

@@ -1,6 +1,7 @@
 import {Component, EventEmitter} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {Message} from './message';
+import {MessageService} from './message.service';
 
 @Component({
     selector: 'nb-messagerow',
@@ -27,17 +28,19 @@ export class MessageRow {
     change = new EventEmitter<any>();
     message: Message;
     timeAgo: string;
-    isLoading: boolean;
-    
-    constructor() {
-        this.isLoading = true;
+
+    constructor(private messageService: MessageService) {
         
-        setTimeout(() => {
-        this.isLoading = false;
-        }, 1000);
+        this.messageService.receivedMessage.subscribe(msgId => {
+            if (this.message.id === msgId) {
+                this.message.isLoading = false;
+            }
+        });
+        
     }
 
     ngOnInit() {
+
         this.timeAgo = this.calcTimeAgo(this.message.datetime);
 
         if (isNaN(MessageRow.newIndex)) {
@@ -53,7 +56,7 @@ export class MessageRow {
         MessageRow.latestUser = this.message.username;
     }
 
-    calcTimeAgo (messageTime: string): string {
+    calcTimeAgo(messageTime: string): string {
 
         var today = new Date();
         /*
@@ -62,7 +65,7 @@ export class MessageRow {
         console.log("today: " + today.toISOString());
         */
         var diffMs = Math.abs(new Date(messageTime.toString()).getTime()
-         - today.getTime()); // milliseconds between now & Christmas
+            - today.getTime()); // milliseconds between now & Christmas
         //console.log('diffMs: ' + diffMs);
 
         var diffDays = Math.round(diffMs / 86400000); // days

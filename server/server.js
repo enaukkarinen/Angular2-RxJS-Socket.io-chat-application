@@ -22,8 +22,7 @@ app.use(cors());
 app.use(require('./anonymous-routes'));
 app.use(require('./protected-routes'));
 app.use(require('./user-routes'));
-
-
+  
 console.log('About to crank up node!');
 console.log('PORT=' + port);
 
@@ -45,6 +44,12 @@ server.on('error', function(err) {
     
 });
 
+var io = require('socket.io').listen(server);
+require('./chat-portal')(io);
+
+server.listen(port);
+
+/*
 var io =  require('socket.io')(server);
 // Chatroom
 
@@ -108,6 +113,6 @@ var addedUser = false;
     }
   });
 });
+*/
 
-server.listen(port);
 
