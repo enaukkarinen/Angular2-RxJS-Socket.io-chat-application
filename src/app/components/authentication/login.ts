@@ -16,18 +16,17 @@ import {UserService} from './user.service';
 export class Login {
 
     constructor(private router: Router, private userService: UserService) {
-        // react to user change
-        this.userService.currentUser.subscribe(u => {
-            if (u !== null) {
-                console.log('reacting to user change: ' + u);
-                this.router.parent.navigateByUrl('/home');
-            }
-        });
+
     }
 
     login(event, username, password) {
         event.preventDefault();
-        this.userService.login(username, password);
+        this.userService.login(username, password).then(() => {
+            this.router.parent.navigateByUrl('/home');
+        },
+        () => {
+            
+        });
     }
 
     signup(event) {

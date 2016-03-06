@@ -18,24 +18,16 @@ import {UserService} from '../authentication/user.service';
 })
 export class Home {
     jwt: string;
-    decodedJwt: string;
+    decodedJwt: any;
     response: string;
     api: string;
-    user: User = new User('', '');
+    user: User;
 
     constructor(public router: Router, public http: Http, public authHttp: AuthHttp,
     public jwtHelper: JwtHelper, private userService: UserService) {
-
         this.jwt = localStorage.getItem('jwt');
         this.decodedJwt = this.jwt && this.jwtHelper.decodeToken(this.jwt);
-
-        // react to user change
-        this.userService.currentUser.subscribe(u => {
-            console.log('Home reacting to user change: ' + u);
-            if (u !== null) {
-                this.user = u;
-            }
-        });
+        this.user = this.userService.getCurrentUser();
     }
 
     logout() {
@@ -44,11 +36,11 @@ export class Home {
     }
 
     callAnonymousApi() {
-        this._callApi('Anonymous', 'http://localhost:7203/api/messages');
+        this._callApi('Anonymous', 'http://localhost:9000/api/messages');
     }
 
     callSecuredApi() {
-        this._callApi('Secured', 'http://localhost:7203/api/protected/messages');
+        this._callApi('Secured', 'http://localhost:9000/api/protected/messages');
     }
 
     _callApi(type, url) {

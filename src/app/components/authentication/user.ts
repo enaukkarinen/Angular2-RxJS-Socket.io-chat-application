@@ -1,10 +1,12 @@
-import { uuid } from '../../utils/uuid';
 
 export class User {
-  id: string;
+    id: string;
+    username: string;
+    avatar: string;
 
-  constructor(public name: string,
-              public avatarSrc: string) {
-    this.id = uuid();
-  }
+    constructor(obj?: any) {
+        this.id = obj && obj.id || null;
+        this.username = obj && obj.username || null;
+        this.avatar = obj && obj.avatar || 'avatar';
+    }
 }

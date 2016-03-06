@@ -17,42 +17,18 @@ export class Signup {
 
     constructor(public router: Router, private userService: UserService) {
 
-        // react to user change
-        this.userService.currentUser.subscribe(u => {
-            if (u !== null) {
-                console.log('reacting to user change: ' + u);
-                this.router.parent.navigateByUrl('/home');
-            }
-        });
-
     }
 
-    signup(event: any, username: string, password: string): void {
+    signup(event: any, username: string, password: string, avatar: string): void {
         event.preventDefault();
-        this.userService.signup(username, password);
+        this.userService.signup(username, password, avatar).then(() => {
+            console.log('then');
+            this.router.parent.navigateByUrl('/home');
+        });
     }
 
     login(event) {
         event.preventDefault();
         this.router.parent.navigateByUrl('/login');
     }
-
-    /*
-    signup(event, username, password) {
-        event.preventDefault();
-        let body = JSON.stringify({ username, password });
-        this.http.post('http://localhost:7203/users', body, { headers: contentHeaders })
-            .subscribe(
-            response => {
-                console.log(response.json());
-                localStorage.setItem('jwt', response.json().id_token);
-                this.router.parent.navigateByUrl('/home');
-            },
-            error => {
-                alert(error.text());
-                console.log(error.text());
-            }
-            );
-    }
-    */
 }

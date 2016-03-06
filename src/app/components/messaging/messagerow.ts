@@ -38,9 +38,6 @@ export class MessageRow {
     }
 
     ngOnInit() {
-        console.log(this.message);
-        console.log(this.message.datetime);
-        console.log(this.message.username);
         this.timeAgo = this.calcTimeAgo(this.message.datetime);
 
         if (isNaN(MessageRow.newIndex)) {

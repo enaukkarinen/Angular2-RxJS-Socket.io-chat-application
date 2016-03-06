@@ -45,7 +45,7 @@ function getUserScheme(req) {
 app.post('/users', function(req, res) {
   
   var userScheme = getUserScheme(req);  
-
+  
   if (!userScheme.username || !req.body.password) {
     return res.status(400).send("You must send the username and the password");
   }
@@ -56,13 +56,13 @@ app.post('/users', function(req, res) {
 
   var profile = _.pick(req.body, userScheme.type, 'password', 'extra');
   profile.id = _.max(users, 'id').id + 1;
+  profile.avatar = req.body.avatar;
 
   users.push(profile);
 
   res.status(201).send({
     id_token: createToken(profile),
-    username: userScheme.username,
-    avatar: 'avatar'
+    username: userScheme.username
   });
 });
 
@@ -86,7 +86,6 @@ app.post('/sessions/create', function(req, res) {
 
   res.status(201).send({
     id_token: createToken(user),
-    username: userScheme.username,
-    avatar: 'avatar'
+    username: userScheme.username
   });
 });

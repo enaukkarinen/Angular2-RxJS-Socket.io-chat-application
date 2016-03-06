@@ -2,6 +2,7 @@ import {AfterViewChecked, Component, ElementRef, ViewChild} from 'angular2/core'
 import {MessageRow} from './messagerow';
 import {Message} from './message';
 import {MessageService} from './message.service';
+import {UserService} from '../authentication/user.service';
 import {Observable} from 'rxjs';
 
 
@@ -29,10 +30,9 @@ export class MessageBox implements AfterViewChecked {
     draftMessage: Message;
     messages2: Observable<any>;
 
-    constructor(private messageService: MessageService) {
+    constructor(private messageService: MessageService, private userService: UserService) {
 
         this.messageService.getMessages().subscribe(m => { 
-            console.log(m);
             this.messages = m; }, 
             error => { console.log(error); 
         });
@@ -55,7 +55,6 @@ export class MessageBox implements AfterViewChecked {
         m.username = 'ensio'; //this.currentUser;
         m.avatar = 'avatar';
         m.datetime = new Date().toISOString();
-        console.log('draftmessage: ' + m.message );
 
         this.messageService.sendMessage(m);
 
