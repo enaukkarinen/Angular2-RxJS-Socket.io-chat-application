@@ -1,14 +1,21 @@
 
+import {uuid} from '../../utils/uuid';
+
 export class Message {
+    
+    id: string;
     username: string;
-    datetime: Date;
+    datetime: string;
     avatar: string;
     message: string;
 
-    constructor(u: string, d: Date, a: string, m: string) {
-        this.username = u;
-        this.datetime = d;
-        this.avatar = a;
-        this.message = m;
-    }
+    
+    constructor(obj?: any) {
+        this.id       = obj && obj.id       || uuid();
+        this.username = obj && obj.username || null;
+        this.datetime = obj && obj.datetime || new Date();
+        this.avatar   = obj && obj.avatar   || 'avatar';
+        this.message  = obj && obj.text     || null;
+  }
 }
+

@@ -1,11 +1,12 @@
 
-<div *ngIf="messageMode === 0" class="left clearfix">
+<div *ngIf="messageMode === 0" class="left clearfix" [ngClass]="{'message-loading': isLoading, disabled: !isLoading}">
     <span class="chat-img pull-left">
-        <img src="http://localhost:7203/api/avatar/{{message.avatar}}" alt="User Avatar" class="img-circle" width="40px" height="40px"/>
+        <img src="http://localhost:9000/api/avatar/{{message.avatar}}" alt="User Avatar" class="img-circle" width="40px" height="40px"/>
     </span>
     <div class="chat-body clearfix">
         <div class="header">
             <strong class="primary-font">{{message.username}}</strong> 
+            <span *ngIf="isLoading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
             <small class="pull-right text-muted">
                 <span class="glyphicon glyphicon-time"></span>{{timeAgo}}
             </small>
@@ -15,16 +16,19 @@
     </div>
 </div>
 
-<div *ngIf="messageMode === 1" class="right clearfix">
+<div *ngIf="messageMode === 1" class="right clearfix" [ngClass]="{'message-loading': isLoading, disabled: !isLoading}">
     <span class="chat-img pull-right">
-        <img src="http://localhost:7203/api/avatar/{{message.avatar}}" alt="User Avatar" class="img-circle" width="40px" height="40px"/>
+        <img src="http://localhost:9000/api/avatar/{{message.avatar}}" alt="User Avatar" class="img-circle" width="40px" height="40px"/>
     </span>
     <div class="chat-body clearfix">
         <div class="header">
             <small class=" text-muted">
                 <span class="glyphicon glyphicon-time"></span>{{timeAgo}}
             </small>
-            <strong class="pull-right primary-font">{{message.username}}</strong>
+            <div class="pull-right">
+                <span *ngIf="isLoading" class=" glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                <strong class="primary-font">{{message.username}}</strong>
+            </div>
         </div>
         
         <p>{{message.message}}</p>

@@ -1,0 +1,23 @@
+{
+"version": "0.2.0",
+"configurations": [
+    {
+        "name": "Chrome Launch",
+        "request": "launch",
+        "type":"chrome",
+        "webRoot": "dist",
+        "sourceMaps": true,
+        "url": "http://localhost:9000/",
+        "diagnosticLogging": true
+    },
+    {
+        "name": "Chrome Attach",
+        "request": "attach",
+        "type": "chrome",
+        "webRoot": "dist",
+        "port": 9000,
+        "sourceMaps": true,
+        "diagnosticLogging": true
+    }
+  ]
+}

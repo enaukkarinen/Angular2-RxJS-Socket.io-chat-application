@@ -1,21 +1,42 @@
+/// <reference path="../../../custom_typings.d.ts" />
 import { Injectable } from 'angular2/core';
-import {Http} from 'angular2/http';
-import {Subject, Observable} from 'rxjs';
+import {Http, Response} from 'angular2/http';
+import {Subject, BehaviorSubject, Observable, ConnectableObservable} from 'rxjs';
 import {Message} from './message';
+import {contentHeaders} from '../../utils/headers';
 
 @Injectable()
 export class MessageService {
 
-    private url: string = 'http://localhost:7203/api/';
-    messages: Observable<Message[]>;
+    private url: string = 'http://localhost:9000/api/';
+    private socketUrl: string = 'http://localhost:9000';
+    private socket: Socket;
+    newMessage: Subject<Message> = new BehaviorSubject<Message>(null);
 
-    constructor(private http: Http) { }
+    currentThreadMessages: ConnectableObservable<any>;
+    
+    constructor(private http: Http) { 
+        this.getMessages();
+        var io = require('socket.io-client');
+        this.socket = io(this.socketUrl);
 
-    getMessages() {
-        // return an observable. TO-DO: how to type this.
-        return this.http.get(this.url + 'messages')
-            .map((responseData) => {
-                return responseData.json();
-            });
+        this.socket.on('message', (msg) => {  
+            console.log('socket on new message');
+            console.log(msg);
+            this.newMessage.next(new Message(msg)); 
+        });
     }
+
+    getMessages(): Observable<any> {
+        return this.http.get(this.url + 'messages')
+        .map((responseData) => { return new Message(responseData.json()); });
+    }
+
+    sendMessage(message: Message): void {
+        
+        let msg = JSON.stringify(message);
+        this.socket.emit('new message', msg);
+
+    }
+
 }

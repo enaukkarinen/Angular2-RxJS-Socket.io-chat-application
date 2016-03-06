@@ -27,12 +27,20 @@ export class MessageRow {
     change = new EventEmitter<any>();
     message: Message;
     timeAgo: string;
-
+    isLoading: boolean;
+    
     constructor() {
-
+        this.isLoading = true;
+        
+        setTimeout(() => {
+        this.isLoading = false;
+        }, 1000);
     }
 
     ngOnInit() {
+        console.log(this.message);
+        console.log(this.message.datetime);
+        console.log(this.message.username);
         this.timeAgo = this.calcTimeAgo(this.message.datetime);
 
         if (isNaN(MessageRow.newIndex)) {
@@ -48,7 +56,7 @@ export class MessageRow {
         MessageRow.latestUser = this.message.username;
     }
 
-    calcTimeAgo (messageTime: Date): string {
+    calcTimeAgo (messageTime: string): string {
 
         var today = new Date();
         /*

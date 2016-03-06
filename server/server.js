@@ -7,7 +7,7 @@ var logger          = require('morgan'),
     bodyParser      = require('body-parser');
 
 // use SET NODE_ENV=development/build in console.
-var port = process.env.PORT || 7203;
+var port = process.env.PORT || 9000;
 var environment = process.env.NODE_ENV;
 
 var app = express();
@@ -60,10 +60,7 @@ var addedUser = false;
       console.log(data);
       
     // we tell the client to execute 'new message'
-    socket.emit('message', {
-      username: socket.username,
-      message: data
-    });
+    socket.emit('message', data);
   });
 
   // when the client emits 'add user', this listens and executes

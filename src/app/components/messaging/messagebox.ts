@@ -2,6 +2,8 @@ import {AfterViewChecked, Component, ElementRef, ViewChild} from 'angular2/core'
 import {MessageRow} from './messagerow';
 import {Message} from './message';
 import {MessageService} from './message.service';
+import {Observable} from 'rxjs';
+
 
 @Component({
     // The selector is what angular internally uses
@@ -23,13 +25,23 @@ import {MessageService} from './message.service';
 export class MessageBox implements AfterViewChecked {
     @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-    messages: Array<Message>;
+    messages: Array<Message> = [];
     draftMessage: Message;
+    messages2: Observable<any>;
 
-    constructor(messageService: MessageService) {
-        var messageObs = messageService.getMessages();
+    constructor(private messageService: MessageService) {
 
-        messageObs.subscribe(m => { this.messages = m; }, error => { console.log(error); });
+        this.messageService.getMessages().subscribe(m => { 
+            this.messages = m; }, 
+            error => { console.log(error); 
+        });
+
+        this.messageService.newMessage.subscribe( m => {
+            if(m != null) {
+                this.messages.push(m);
+            }
+        },
+        (e) => {console.log(e)});
     }
 
     onEnter(event: any): void {
@@ -41,15 +53,26 @@ export class MessageBox implements AfterViewChecked {
         let m: Message = this.draftMessage;
         m.username = 'ensio'; //this.currentUser;
         m.avatar = 'avatar';
-        m.datetime = new Date();
+        m.datetime = new Date().toISOString();
         //m.isRead = true;
         //this.messagesService.addMessage(m);
-        this.messages.push(m);
-        this.draftMessage = new Message('', new Date(), 'avatar', '');
+        //this.messages.push(m);
+
+        this.messageService.sendMessage(m);
+
+        this.draftMessage = new Message(
+            {
+                username: 'ensio',
+                datetime: new Date().toISOString()     
+            });
     }
 
     ngOnInit() {
-        this.draftMessage = new Message('', new Date(), 'avatar', '');
+        this.draftMessage = new Message(
+            {
+                username: 'ensio',
+                datetime: new Date().toISOString()     
+            });
     }
 
     ngAfterViewChecked() {

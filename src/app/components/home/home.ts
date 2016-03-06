@@ -23,10 +23,12 @@ export class Home {
     api: string;
     user: User = new User('', '');
 
-    constructor(public router: Router, public http: Http, public authHttp: AuthHttp, public jwtHelper: JwtHelper, private userService: UserService) {
+    constructor(public router: Router, public http: Http, public authHttp: AuthHttp,
+    public jwtHelper: JwtHelper, private userService: UserService) {
+
         this.jwt = localStorage.getItem('jwt');
         this.decodedJwt = this.jwt && this.jwtHelper.decodeToken(this.jwt);
-        
+
         // react to user change
         this.userService.currentUser.subscribe(u => {
             console.log('Home reacting to user change: ' + u);

@@ -24,23 +24,3 @@ bootstrap(
     })
   ]
 );
-
-var io = require('socket.io-client');
-var socket = io('http://localhost:7203');
-
-socket.emit('new message', 'on init test message!!!');
-
-socket.on('message', (msg) => {
-    console.log('client saw message');
-    console.log(msg);
-});
-/*
-/*$('form').submit(function(){
-socket.emit('chat message', $('#m').val());
-$('#m').val('');
-return false;
-});
-socket.on('chat message', function(msg){
-$('#messages').append($('<li>').text(msg));
-});
-*/

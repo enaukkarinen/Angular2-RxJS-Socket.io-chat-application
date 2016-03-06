@@ -2,7 +2,6 @@ import { Component, View } from 'angular2/core';
 import { Router, RouterLink } from 'angular2/router';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import { Http, Headers } from 'angular2/http';
-import { contentHeaders } from './headers';
 
 import {UserService} from './user.service';
 
@@ -15,7 +14,7 @@ import {UserService} from './user.service';
     template: require('./login.html')
 })
 export class Login {
-    
+
     constructor(private router: Router, private userService: UserService) {
         // react to user change
         this.userService.currentUser.subscribe(u => {

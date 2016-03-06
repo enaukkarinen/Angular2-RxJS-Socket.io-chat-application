@@ -9,14 +9,6 @@ module.exports = {
     debug: true,
     watch: true,
     
-    // webpack-dev-server config
-    // in the webpack-dev-server all files are ran from memory and not copied anywhere (no dist/ folder created)
-    devServer: {
-        port: 3000,
-        contentBase: "./dist"
-    },
-  
-    
     entry: { 
         'lib':  [
             // Polyfills

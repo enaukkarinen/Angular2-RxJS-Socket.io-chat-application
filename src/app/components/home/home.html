@@ -1,4 +1,7 @@
+
 <div class="row">
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">JWT info</button>
+  <div id="demo" class="collapse">
     <div class="home col-md-5">
         <h2 *ngIf="jwt">Your JWT is:</h2>
         <pre *ngIf="jwt" class="jwt"><code>{{ jwt }}</code></pre>
@@ -10,6 +13,9 @@
         <h2 *ngIf="response">The response of calling the <span class="red">{{api}}</span> API is:</h2>
         <h3 *ngIf="response">{{response}}</h3>
     </div>
+  </div>
+</div>
+<div class="row">
         <div class="home col-md-5">
             <h4>Welcome user {{user.name}}</h4>
         <nb-messagebox></nb-messagebox>
