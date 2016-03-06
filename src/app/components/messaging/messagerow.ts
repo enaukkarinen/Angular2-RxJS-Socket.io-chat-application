@@ -20,10 +20,8 @@ import {MessageService} from './message.service';
 
 export class MessageRow {
 
-    private static newIndex: number;
-    private static lastIndex: number;
     private static latestUser: string;
-
+    private static messageMode: number = 0;
     messageMode: number;
     change = new EventEmitter<any>();
     message: Message;
@@ -31,7 +29,9 @@ export class MessageRow {
 
     constructor(private messageService: MessageService) {
         
-        this.messageService.receivedMessage.subscribe(msgId => {
+        this.messageService.receivedMessage
+        .delay(1000)// demonstrate message lag
+        .subscribe(msgId => {
             if (this.message.id === msgId) {
                 this.message.isLoading = false;
             }
@@ -43,15 +43,11 @@ export class MessageRow {
 
         this.timeAgo = this.calcTimeAgo(this.message.datetime);
 
-        if (isNaN(MessageRow.newIndex)) {
-            MessageRow.newIndex = 0;
-        }
-        MessageRow.newIndex += 1;
-
         if (this.message.username === MessageRow.latestUser) {
-            this.messageMode = MessageRow.lastIndex % 2 === 1 ? 1 : 0;
+            this.messageMode = MessageRow.messageMode;
         } else {
-            this.messageMode = MessageRow.newIndex % 2 === 1 ? 1 : 0;
+            MessageRow.messageMode = MessageRow.messageMode == 0 ? 1 : 0;
+            this.messageMode = MessageRow.messageMode;
         }
         MessageRow.latestUser = this.message.username;
     }

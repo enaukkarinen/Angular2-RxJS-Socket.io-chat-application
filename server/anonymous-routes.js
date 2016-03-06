@@ -36,6 +36,12 @@ var messages = [
         username: 'Dan Wahlin',
         datetime: new Date("February 22, 2016 11:13:00").toISOString(),
         avatar: 'avatar'
+    },
+    {
+        message: 'bla bla',
+        username: 'Michael Jordan',
+        datetime: new Date("February 22, 2016 11:13:30").toISOString(),
+        avatar: 'avatar'
     }
 ];
 

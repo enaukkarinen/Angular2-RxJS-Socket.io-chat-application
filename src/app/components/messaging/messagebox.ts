@@ -39,6 +39,7 @@ export class MessageBox implements AfterViewChecked {
         this.messageService.newMessage.subscribe( m => {
             console.log(m);
             if (m != null) {
+                m.isLoading = false;
                 this.messages.push(m);
             }
         },
