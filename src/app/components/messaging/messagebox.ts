@@ -1,8 +1,10 @@
-import {AfterViewChecked, Component, ElementRef, ViewChild} from 'angular2/core';
+import {AfterViewChecked, Component, ElementRef, EventEmitter, ViewChild} from 'angular2/core';
 import {MessageRow} from './messagerow';
-import {Message} from './message';
+import {Message} from '../../models/message';
+import {Writer} from '../../models/writer';
 import {MessageService} from './message.service';
 import {UserService} from '../authentication/user.service';
+import {UsersWritingPipe} from './userswriting.pipe';
 import {Observable} from 'rxjs';
 import * as _ from 'lodash';
 
@@ -17,7 +19,7 @@ import * as _ from 'lodash';
     // Doing so will allow Angular to attach our behavior to an element
     directives: [MessageRow],
     // We need to tell Angular's compiler which custom pipes are in our template.
-    pipes: [],
+    pipes: [UsersWritingPipe],
     // Our list of styles in our component. We may add more to compose many styles together
     styles: [],
     // Every Angular template is first compiled by the browser before Angular runs it's compiler
@@ -28,7 +30,10 @@ export class MessageBox implements AfterViewChecked {
 
     messages: Array<any> = [];
     draftMessageText: string;
-
+    textChanged = new EventEmitter<any>();
+    lostFocus = new EventEmitter<any>();
+    writers: Array<Writer> = [];
+    
     constructor(private messageService: MessageService, private userService: UserService) {
 
         this.messageService.getMessages().subscribe(m => { 
@@ -42,8 +47,21 @@ export class MessageBox implements AfterViewChecked {
                 m.isLoading = false;
                 this.messages.push(m);
             }
-        },
-        (e) => console.log(e));
+            }, (e) => console.log(e)
+        );
+        
+        this.messageService.writer.subscribe( w => {
+            console.log(w);
+            if(_.some(this.writers, {id: w.id}) && !w.isWriting)
+                this.writers =  this.writers.filter((e)=> {return e.id != w.id});
+            else if(!_.some(this.writers, {id: w.id}) && w.isWriting)
+                this.writers = [...this.writers, w];
+                
+            console.log(this.writers.length);
+        });
+        
+        this.textChanged.subscribe(t =>  messageService.startTyping());
+        this.lostFocus.subscribe(f => messageService.stopTyping());
         
     }
 

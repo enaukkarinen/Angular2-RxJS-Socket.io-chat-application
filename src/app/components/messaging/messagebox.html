@@ -8,12 +8,17 @@
 
     </div>
     <div class="panel-footer">
-        <p style="min-height: 10px;"></p>
+        <p style="min-height: 10px; color: rgba(91, 192, 222, 0.8);">{{writers | usersWriting}}</p>
         <div class="input-group">
-        <input type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." (keydown.enter)="onEnter($event)" [(ngModel)]="draftMessageText"/>
+        
+        <input type="text" class="form-control input-sm chat_input" placeholder="Write your message here..."  
+        [(ngModel)]="draftMessageText"
+        (keydown.enter)="onEnter($event)" 
+        (input)="textChanged.next($event.target.value)"
+        (blur)="lostFocus.next($event.target.value)"/>
+        
         <span class="input-group-btn">
             <button class="btn btn-primary btn-sm" (click)="onEnter($event)">Send</button>
         </span>
-        </div>
     </div>
 </div>

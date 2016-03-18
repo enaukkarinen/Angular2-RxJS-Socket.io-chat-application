@@ -3,7 +3,7 @@ import {Http} from 'angular2/http';
 import {Subject, ReplaySubject, BehaviorSubject} from 'rxjs';
 import {JwtHelper} from 'angular2-jwt';
 import { contentHeaders } from '../../utils/headers';
-import {User} from './user';
+import {User} from '../../models/user';
 
 
 @Injectable()

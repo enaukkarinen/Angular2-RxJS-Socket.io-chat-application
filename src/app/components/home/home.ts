@@ -5,7 +5,7 @@ import { AuthHttp, JwtHelper } from 'angular2-jwt';
 import { Router } from 'angular2/router';
 
 import {MessageBox} from './../messaging/messagebox';
-import {User} from '../authentication/user';
+import {User} from '../../models/user';
 import {UserService} from '../authentication/user.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, EventEmitter} from 'angular2/core';
 import {NgClass} from 'angular2/common';
-import {Message} from './message';
+import {Message} from '../../models/message';
 import {MessageService} from './message.service';
 
 @Component({
@@ -37,6 +37,7 @@ export class MessageRow {
             }
         });
         
+
     }
 
     ngOnInit() {
@@ -46,10 +47,14 @@ export class MessageRow {
         if (this.message.username === MessageRow.latestUser) {
             this.messageMode = MessageRow.messageMode;
         } else {
-            MessageRow.messageMode = MessageRow.messageMode == 0 ? 1 : 0;
+            MessageRow.messageMode = MessageRow.messageMode === 0 ? 1 : 0;
             this.messageMode = MessageRow.messageMode;
         }
         MessageRow.latestUser = this.message.username;
+        
+        setInterval(() => { 
+            this.timeAgo = this.calcTimeAgo(this.message.datetime); 
+        }, 30000);
     }
 
     calcTimeAgo(messageTime: string): string {
