@@ -7,6 +7,7 @@ import {contentHeaders} from '../../utils/headers';
 import {UserService} from '../authentication/user.service';
 import {User} from '../../models/user';
 import {Writer} from '../../models/writer';
+import {MessagingEvent} from './messagingevent';
 
 @Injectable()
 export class MessageService {
@@ -25,20 +26,20 @@ export class MessageService {
         var io = require('socket.io-client');
         this.socket = io(this.socketUrl);
 
-        this.socket.on('message', (msg) => {
+        this.socket.on(MessagingEvent[MessagingEvent.NewMessage], (msg) => {
             this.newMessage.next(new Message(JSON.parse(msg)));
         });
 
-        this.socket.on('message received', (msgId) => {
+        this.socket.on(MessagingEvent[MessagingEvent.MessageReceived], (msgId) => {
             this.receivedMessage.next(msgId);
         });
 
-        this.socket.on('user typing', (writer) => {
+        this.socket.on(MessagingEvent[MessagingEvent.UserTyping], (writer) => {
             writer.isWriting = true;
             this.writer.next(new Writer(writer));
         });
 
-        this.socket.on('user stopped typing', (writer) => {
+        this.socket.on(MessagingEvent[MessagingEvent.UserStoppedTyping], (writer) => {
             writer.isWriting = false;
             this.writer.next(new Writer(writer));
         });
@@ -51,20 +52,20 @@ export class MessageService {
 
     sendMessage(message: Message): void {
         let msg = JSON.stringify(message);
-        this.socket.emit('new message', msg);
+        this.socket.emit(MessagingEvent[MessagingEvent.SendMessage], msg);
     }
 
     startTyping(): void {
         if (this.userIsWriting === false) {
             this.userIsWriting = true;
-            this.socket.emit('start typing', this.userService.getCurrentUser());
+            this.socket.emit(MessagingEvent[MessagingEvent.ImTyping], this.userService.getCurrentUser());
         }
     }
 
     stopTyping(): void {
         if (this.userIsWriting === true) {
             this.userIsWriting = false;
-            this.socket.emit('stop typing', this.userService.getCurrentUser());
+            this.socket.emit(MessagingEvent[MessagingEvent.IStoppedTyping], this.userService.getCurrentUser());
         }
     }
 

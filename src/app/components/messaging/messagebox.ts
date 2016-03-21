@@ -52,11 +52,11 @@ export class MessageBox implements AfterViewChecked {
         
         this.messageService.writer.subscribe( w => {
             console.log(w);
-            if(_.some(this.writers, {id: w.id}) && !w.isWriting)
-                this.writers =  this.writers.filter((e)=> {return e.id != w.id});
-            else if(!_.some(this.writers, {id: w.id}) && w.isWriting)
+            if (_.some(this.writers, {id: w.id}) && !w.isWriting) {
+                this.writers = this.writers.filter((e) => { return e.id !== w.id; });
+            } else if (!_.some(this.writers, {id: w.id}) && w.isWriting) {
                 this.writers = [...this.writers, w];
-                
+            }
             console.log(this.writers.length);
         });
         

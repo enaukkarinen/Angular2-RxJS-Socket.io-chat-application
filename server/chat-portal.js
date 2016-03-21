@@ -6,21 +6,25 @@ exports = module.exports = function (io) {
         var addedUser = false;
 
         // when the client emits 'new message', this listens and executes
-        socket.on('new message', function (msg) {
+        socket.on('SendMessage', function (msg) {
             console.log('noticed new message');
             console.log(msg);
             
             var parsedMsg = JSON.parse(msg);
-            socket.emit('message received', parsedMsg.id); // Send message to sender
-            socket.broadcast.emit('message', msg); // Send message to everyone BUT sender
+            socket.emit('MessageReceived', parsedMsg.id); // Send message to sender
+            socket.broadcast.emit('NewMessage', msg); // Send message to everyone BUT sender
         });
 
         // when the client emits 'add user', this listens and executes
-        socket.on('add user', function (username) {
+        socket.on('AddUser', function (user) {
             if (addedUser) return;
-
+            
+            var parsedUser = JSON.parse(user);
+            
             // we store the username in the socket session for this client
-            socket.username = username;
+            
+            socket.userid = parsedUser.id;
+            socket.username = parsedUser.username;
             ++numUsers;
             addedUser = true;
             socket.emit('login', {
@@ -28,30 +32,21 @@ exports = module.exports = function (io) {
             });
             
             // echo globally (all clients) that a person has connected
-            socket.broadcast.emit('user joined', {
+            socket.broadcast.emit('UserJoined', {
+                
                 username: socket.username,
                 numUsers: numUsers
             });
         });
 
         // when the client emits 'typing', we broadcast it to others
-        socket.on('start typing', function (user) {
-
-            socket.broadcast.emit('user typing', user);
-            
-            /*socket.broadcast.emit('user typing', {
-                username: socket.username
-            });*/
+        socket.on('ImTyping', function (user) {
+            socket.broadcast.emit('UserTyping', user);
         });
 
         // when the client emits 'stop typing', we broadcast it to others
-        socket.on('stop typing', function (user) {
-
-            socket.broadcast.emit('user stopped typing', user);
-            /*
-            socket.broadcast.emit('user stopped typing', {
-                username: socket.username
-            });*/
+        socket.on('IStoppedTyping', function (user) {
+            socket.broadcast.emit('UserStoppedTyping', user);
         });
 
         // when the user disconnects.. perform this
