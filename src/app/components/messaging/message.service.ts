@@ -24,8 +24,17 @@ export class MessageService {
     constructor(private http: Http, private userService: UserService) {
         this.getMessages();
         var io = require('socket.io-client');
-        this.socket = io(this.socketUrl);
+        var jwt = localStorage.getItem('jwt');
+        this.socket = io.connect(this.socketUrl, {query: 'token=' + jwt});
 
+        this.socket.on('connect', () => {
+           console.log('connected'); 
+        });
+        
+        this.socket.on('disconnect', () => {
+           console.log('disconnected'); 
+        });
+        
         this.socket.on(MessagingEvent[MessagingEvent.NewMessage], (msg) => {
             this.newMessage.next(new Message(JSON.parse(msg)));
         });

@@ -1,6 +1,19 @@
+
+
 exports = module.exports = function (io) {
     var numUsers = 0;
+    var socketioJwt = require('socketio-jwt');
+    var config  = require('./config');
+    
+    
+    io.set('authorization', socketioJwt.authorize({
+        secret: config.secret,
+        handshake: true
+    }));
+
     io.sockets.on('connection', function (socket) {
+        
+        console.log('connected');
         
         console.log('socket.io connection established');
         var addedUser = false;
