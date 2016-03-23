@@ -28,11 +28,11 @@ export class MessageService {
         this.socket = io.connect(this.socketUrl, {query: 'token=' + jwt});
 
         this.socket.on('connect', () => {
-           console.log('connected'); 
+           //console.log('connected'); 
         });
         
         this.socket.on('disconnect', () => {
-           console.log('disconnected'); 
+           //console.log('disconnected'); 
         });
         
         this.socket.on(MessagingEvent[MessagingEvent.NewMessage], (msg) => {

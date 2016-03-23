@@ -22,7 +22,10 @@ export class UserService {
     
     constructor(private http: Http, private jwtHelper: JwtHelper) { 
         var io = require('socket.io-client');
-        this.socket = io(this.socketUrl);
+        
+        /*
+        var jwt = localStorage.getItem('jwt');
+        this.socket = io.connect(this.socketUrl, {query: 'token=' + jwt});
         
         /*
         this.socket.on('UserJoined', (user: User) => {

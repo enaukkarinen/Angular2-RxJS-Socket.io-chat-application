@@ -24,3 +24,7 @@ bootstrap(
     })
   ]
 );
+
+
+import {doodles} from './rxjs_doodles';
+doodles();
