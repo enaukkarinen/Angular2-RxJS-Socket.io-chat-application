@@ -1,14 +1,5 @@
 /// <reference path="./custom_typings.d.ts" />
 
-
-/**
- *             ,
-            '@angular/platform-browser-dynamic',
-            ,
-            ,
-            
-            ,
- */
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { provide } from '@angular/core';
 import { FORM_PROVIDERS } from '@angular/common';
