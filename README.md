@@ -11,6 +11,8 @@ Stack:
 - Socket.io
 - Express
 
+Still no walkthrough here, but I'll update the README once things get more stabilized.
+
 References:
 - https://github.com/AngularClass/angular2-webpack-starter
 - https://github.com/joeeames/WebpackFundamentalsCourse
