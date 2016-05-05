@@ -1,6 +1,6 @@
 /// <reference path="../../../custom_typings.d.ts" />
-import { Injectable } from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import { Injectable } from '@angular/core';
+import {Http, Response} from '@angular/http';
 import {Subject, BehaviorSubject, Observable, ConnectableObservable} from 'rxjs';
 import {Message} from '../../models/message';
 import {contentHeaders} from '../../utils/headers';

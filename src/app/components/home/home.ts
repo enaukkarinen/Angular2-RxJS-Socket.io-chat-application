@@ -1,8 +1,8 @@
-import { Component, View } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-import { Http, Headers } from 'angular2/http';
+import { Component } from '@angular/core';
+import { CORE_DIRECTIVES } from '@angular/common';
+import { Http, Headers } from '@angular/http';
 import { AuthHttp, JwtHelper } from 'angular2-jwt';
-import { Router } from 'angular2/router';
+import { Router } from '@angular/router-deprecated';
 
 import {MessageBox} from './../messaging/messagebox';
 import {User} from '../../models/user';
@@ -10,9 +10,7 @@ import {UserService} from '../authentication/user.service';
 
 @Component({
     selector: 'home',
-    providers: [UserService]
-})
-@View({
+    providers: [UserService],
     directives: [CORE_DIRECTIVES, MessageBox],
     template: require('./home.html')
 })
@@ -32,7 +30,7 @@ export class Home {
 
     logout() {
         localStorage.removeItem('jwt');
-        this.router.parent.navigateByUrl('/login');
+        this.router.navigateByUrl('/login');
     }
 
     callAnonymousApi() {

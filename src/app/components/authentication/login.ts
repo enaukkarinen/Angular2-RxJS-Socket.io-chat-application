@@ -1,15 +1,13 @@
-import { Component, View } from 'angular2/core';
-import { Router, RouterLink } from 'angular2/router';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { Http, Headers } from 'angular2/http';
+import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router-deprecated';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
+import { Http, Headers } from '@angular/http';
 
 import {UserService} from './user.service';
 
 @Component({
     selector: 'login',
     providers: [UserService],
-})
-@View({
     directives: [RouterLink, CORE_DIRECTIVES, FORM_DIRECTIVES],
     template: require('./login.html')
 })
@@ -22,7 +20,7 @@ export class Login {
     login(event, username, password) {
         event.preventDefault();
         this.userService.login(username, password).then(() => {
-            this.router.parent.navigateByUrl('/home');
+            this.router.navigateByUrl('/home');
         },
         () => {
             
@@ -31,6 +29,6 @@ export class Login {
 
     signup(event) {
         event.preventDefault();
-        this.router.parent.navigateByUrl('/signup');
+        this.router.navigateByUrl('/signup');
     }
 }

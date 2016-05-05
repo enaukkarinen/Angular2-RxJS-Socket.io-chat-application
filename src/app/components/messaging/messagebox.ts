@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, ElementRef, EventEmitter, ViewChild} from 'angular2/core';
+import {AfterViewChecked, Component, ElementRef, EventEmitter, ViewChild} from '@angular/core';
 import {MessageRow} from './messagerow';
 import {Message} from '../../models/message';
 import {Writer} from '../../models/writer';

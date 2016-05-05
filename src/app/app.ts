@@ -1,5 +1,5 @@
-import {View, Component} from 'angular2/core';
-import {Location, RouteConfig, RouterLink, Router} from 'angular2/router';
+import {Component} from '@angular/core';
+import {RouteConfig, Router} from '@angular/router-deprecated';
 
 import {LoggedInRouterOutlet} from './logged_in_outlet';
 import { MessageBox } from './components/messaging/messagebox';
@@ -9,9 +9,7 @@ import {Signup} from './components/authentication/signup';
 let template = require('./app.html');
 
 @Component({
-    selector: 'noob-app'
-})
-@View({
+    selector: 'noob-app',
     template: template,
     directives: [LoggedInRouterOutlet]
 })

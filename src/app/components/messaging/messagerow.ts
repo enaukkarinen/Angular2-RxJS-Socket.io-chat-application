@@ -1,5 +1,5 @@
-import {Component, EventEmitter} from 'angular2/core';
-import {NgClass} from 'angular2/common';
+import {Component, EventEmitter} from '@angular/core';
+import {NgClass} from '@angular/common';
 import {Message} from '../../models/message';
 import {MessageService} from './message.service';
 

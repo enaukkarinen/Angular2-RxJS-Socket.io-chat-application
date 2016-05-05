@@ -1,5 +1,5 @@
-import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 import {Subject, ReplaySubject, BehaviorSubject} from 'rxjs';
 import {JwtHelper} from 'angular2-jwt';
 import {contentHeaders} from '../../utils/headers';
