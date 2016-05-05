@@ -26,3 +26,4 @@ This boilerplate includes Typings(typeScript definition manager), which is somew
 References:
 - https://github.com/AngularClass/angular2-webpack-starter
 - https://github.com/joeeames/WebpackFundamentalsCourse
+- https://github.com/auth0-blog/angular2-authentication-sample
