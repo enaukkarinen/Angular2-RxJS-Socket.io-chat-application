@@ -5,7 +5,7 @@ Features:
 - Chat functionalities implemented using observable pattern and web socket.
 
 Stack:
-- Angular 2.0beta
+- Angular2
 - RxJS
 - Bootstrap
 - Socket.io
