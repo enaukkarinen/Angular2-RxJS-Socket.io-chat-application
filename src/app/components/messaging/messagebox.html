@@ -1,7 +1,7 @@
 <div class="panel" >
     <div class="panel-body" #scrollMe>
         <ul class="chat">
-            <li *ngFor="#msg of messages; #idx = index">
+            <li *ngFor="let msg of messages; let idx = index">
                 <nb-messagerow [message]="msg"></nb-messagerow>
             </li>       
         </ul>
