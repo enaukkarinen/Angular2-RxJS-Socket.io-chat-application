@@ -10,7 +10,7 @@
   },
   "files": [
     "src/custom_typings.d.ts",
-    "typings/main.d.ts",
+    "typings/index.d.ts",
     "src/main.ts"
   ]
 }
