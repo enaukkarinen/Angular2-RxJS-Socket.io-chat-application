@@ -12,12 +12,5 @@
     "src/custom_typings.d.ts",
     "typings/main.d.ts",
     "src/main.ts"
-  ],
-  "filesGlob": [
-    "./src/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "typings/main.d.ts"
-  ],
-  "compileOnSave": false,
-  "buildOnSave": false
+  ]
 }

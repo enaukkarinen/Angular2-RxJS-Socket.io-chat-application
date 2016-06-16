@@ -31,7 +31,8 @@ module.exports = {
             'rxjs',
             // Other
             'angular2-jwt',
-            'socket.io-client'
+            'socket.io-client',
+            'lodash'
         ],
         'main': './src/main.ts',
         'bootstrap': 'bootstrap-sass!./src/styles/bootstrap.config.js'
